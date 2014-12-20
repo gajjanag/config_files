@@ -1,0 +1,19 @@
+[user]
+	email = gajjanagadde@gmail.com
+	name = Ganesh Ajjanagadde
+[core]
+	editor = vim
+[merge]
+	tool = vimdiff
+[color]
+	ui = true
+[alias]
+	l = log --oneline --decorate --graph
+	lall = log --oneline --decorate --graph --all
+	diffc = diff --cached
+	ls = log --oneline --decorate --graph --stat
+	track = log --follow -p
+	wc = whatchanged
+[push]
+	defaults = simple
+	default = simple
