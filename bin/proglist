@@ -1,0 +1,16 @@
+#! /bin/sh
+# creates a sorted list of executable programs on the system
+# writes the program list to stdout
+# code adapted from  "From Bash to Z shell" by Kiddle et. al
+
+for dir in `echo "$PATH" | tr ':' ' '`
+do
+    cd "$dir"
+    for file in *
+    do
+        if [ -x "$file" -a ! -d "$file" ]
+        then
+            echo "$file"
+        fi
+    done
+done | sort | grep -v '^\[$'
