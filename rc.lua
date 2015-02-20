@@ -431,11 +431,11 @@ globalkeys = awful.util.table.join(
     -- Screen brightness
     awful.key({ }, "XF86MonBrightnessUp",
         function ()
-            awful.util.spawn("xbacklight -inc 10")
+            awful.util.spawn("xbacklight -inc 5")
         end),
     awful.key({ }, "XF86MonBrightnessDown",
         function ()
-            awful.util.spawn("xbacklight -dec 10")
+            awful.util.spawn("xbacklight -dec 5")
         end),
 
     -- ALSA volume control
