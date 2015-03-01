@@ -34,6 +34,7 @@ alias g++11='g++ -W -Wall -Wextra -pedantic -std=c++11'
 alias android-mount='jmtpfs ~/mtp'
 alias android-umount='fusermount -u ~/mtp'
 alias athenasync='rsync -avz --delete ~/books ~/courses ~/UROP ~/photos ~/ganesh athena.dialup.mit.edu:~/Private'
+alias gitupsub='git submodule foreach --recursive git pull origin master'
 
 # Privileged access
 if [ $UID -ne 0 ]; then
