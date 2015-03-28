@@ -1,24 +1,6 @@
 [submodule "awesome-copycats"]
 	path = awesome-copycats
 	url = https://github.com/copycat-killer/awesome-copycats.git
-[submodule "vim/bundle/vim-unimpaired"]
-	path = vim/bundle/vim-unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "vim/bundle/vim-surround"]
-	path = vim/bundle/vim-surround
-	url = https://github.com/tpope/vim-surround.git
 [submodule "vim/bundle/vim-latex"]
 	path = vim/bundle/vim-latex
 	url = https://github.com/lervag/vim-latex.git
-[submodule "vim/bundle/vim-commentary"]
-	path = vim/bundle/vim-commentary
-	url = https://github.com/tpope/vim-commentary.git
-[submodule "vim/bundle/julia-vim"]
-	path = vim/bundle/julia-vim
-	url = https://github.com/JuliaLang/julia-vim.git
-[submodule "vim/bundle/ctrlp.vim"]
-	path = vim/bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim.git
-[submodule "vim/bundle/rust.vim"]
-	path = vim/bundle/rust.vim
-	url = https://github.com/wting/rust.vim.git
