@@ -129,8 +129,8 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 #
 # Set syntax highlighting styles.
 zstyle ':prezto:module:syntax-highlighting' styles \
-   'builtin' 'bg=blue' \
-   'command' 'bg=blue' \
+   'builtin' 'bg=green' \
+   'command' 'bg=red' \
    'function' 'bg=blue'
 
 #
