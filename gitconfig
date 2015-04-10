@@ -17,3 +17,8 @@
 [push]
 	defaults = simple
 	default = simple
+[sendemail]
+	smtpuser = gajjanagadde@gmail.com
+	smtpserver = smtp.googlemail.com
+	smtpencryption = tls
+	smtpserverport = 587
