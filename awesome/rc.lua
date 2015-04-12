@@ -177,7 +177,7 @@ volumewidget = lain.widgets.alsa({
 })
 
 -- Net
-neticon = wibox.widget.imagebox(beautiful.widget_net)
+neticon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_net), "#313131")
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
 netwidget = wibox.widget.background(lain.widgets.net({
     settings = function()
