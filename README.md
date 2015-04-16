@@ -14,4 +14,5 @@ This is meant to be used with the [lain-git](https://aur.archlinux.org/packages/
 * gitconfig: global git configuration
 * tlp: a very useful (especially for laptops) advanced power management utility. See the [Arch wiki](https://wiki.archlinux.org/index.php/TLP), and the [project page](http://linrunner.de/en/tlp/tlp.html) for more information.
 * tmux.conf: a simple tmux configuration obtained from various sources. Have not got around to using it much yet.
-* xinitrc: nothing special here, except the standard caps lock/control key mapping especially useful for Vim.
+* xinitrc: nothing special here, except the standard caps lock/control key mapping especially useful for Vim. Also contains a hack for redshift, since provided systemd unit fails on my Arch laptop.
+* redshift.conf: a nice tool for shifting the color spectrum of light based on time of day. This is especially useful for reducing eyestrain at night-time, and supposedly helps in getting better sleep as well. The [project page](https://github.com/jonls/redshift), the [Arch wiki article](https://wiki.archlinux.org/index.php/Redshift), and similar apps (not open source) [f.lux](https://justgetflux.com), [Twilight] (https://play.google.com/store/apps/details?id=com.urbandroid.lux).
