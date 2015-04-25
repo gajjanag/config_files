@@ -110,39 +110,39 @@ mymainmenu = awful.menu.new({ items = require("menugen").build_menu(), theme = {
 markup = lain.util.markup
 
 -- Textclock
-clockicon = wibox.widget.imagebox(beautiful.widget_clock)
-mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
+mytextclock = wibox.widget.background(awful.widget.textclock(" %a %d %b  %H:%M"), "#313131")
 
 -- calendar
 lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
 
 -- MEM
-memicon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_mem), "#313131")
-memwidget = wibox.widget.background(lain.widgets.mem({
+memicon = wibox.widget.imagebox(beautiful.widget_mem)
+memwidget = lain.widgets.mem({
     settings = function()
         widget:set_text(" " .. mem_now.used .. "MB ")
     end
-}), "#313131")
+})
 
 -- CPU
-cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
-cpuwidget = lain.widgets.cpu({
+cpuicon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_cpu), "#313131")
+cpuwidget = wibox.widget.background(lain.widgets.cpu({
     settings = function()
         widget:set_text(" " .. cpu_now.usage .. "% ")
     end
-})
+}), "#313131")
 
 -- Coretemp
-tempicon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_temp), "#313131")
-tempwidget = wibox.widget.background(lain.widgets.temp({
+tempicon = wibox.widget.imagebox(beautiful.widget_temp)
+tempwidget = lain.widgets.temp({
     settings = function()
         widget:set_text(" " .. coretemp_now .. "°C ")
     end,
-}), "#313131")
+})
 
 -- Battery
 baticon = wibox.widget.imagebox(beautiful.widget_battery)
-batwidget = lain.widgets.bat({
+baticonbg = wibox.widget.background(baticon, "#313131")
+batwidget = wibox.widget.background(lain.widgets.bat({
     settings = function()
         if bat_now.status ~= "Discharging" then
             baticon:set_image(beautiful.widget_ac)
@@ -156,36 +156,18 @@ batwidget = lain.widgets.bat({
         widget:set_markup(" " .. bat_now.perc .. "% ")
     end,
     battery = "BAT1",
-})
-
--- ALSA volume
-volicon = wibox.widget.imagebox(beautiful.widget_vol)
-volumewidget = lain.widgets.alsa({
-    settings = function()
-        if volume_now.status == "off" then
-            volicon:set_image(beautiful.widget_vol_mute)
-        elseif tonumber(volume_now.level) == 0 then
-            volicon:set_image(beautiful.widget_vol_no)
-        elseif tonumber(volume_now.level) <= 50 then
-            volicon:set_image(beautiful.widget_vol_low)
-        else
-            volicon:set_image(beautiful.widget_vol)
-        end
-
-        widget:set_text(" " .. volume_now.level .. "% ")
-    end,
-})
+}), "#313131")
 
 -- Net
-neticon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_net), "#313131")
+neticon = wibox.widget.imagebox(beautiful.widget_net)
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
-netwidget = wibox.widget.background(lain.widgets.net({
+netwidget = lain.widgets.net({
     settings = function()
         widget:set_markup(markup("#7AC82E", " " .. net_now.received)
                           .. " " ..
                           markup("#46A8C3", " " .. net_now.sent .. " "))
     end
-}), "#313131")
+})
 
 -- Weather
 weathericon = wibox.widget.imagebox(beautiful.widget_weather)
@@ -293,27 +275,23 @@ for s = 1, screen.count() do
     right_layout:add(yawniconbg)
     right_layout:add(yawnbg)
     right_layout:add(arrl_dl)
-    right_layout:add(volicon)
-    right_layout:add(volumewidget)
-    right_layout:add(arrl_ld)
     right_layout:add(memicon)
     right_layout:add(memwidget)
-    right_layout:add(arrl_dl)
+    right_layout:add(arrl_ld)
     right_layout:add(cpuicon)
     right_layout:add(cpuwidget)
-    right_layout:add(arrl_ld)
+    right_layout:add(arrl_dl)
     right_layout:add(tempicon)
     right_layout:add(tempwidget)
-    right_layout:add(arrl_dl)
-    right_layout:add(baticon)
-    right_layout:add(batwidget)
     right_layout:add(arrl_ld)
+    right_layout:add(baticonbg)
+    right_layout:add(batwidget)
+    right_layout:add(arrl_dl)
     right_layout:add(neticon)
     right_layout:add(netwidget)
-    right_layout:add(arrl_dl)
-    right_layout:add(mytextclock)
-    right_layout:add(spr)
     right_layout:add(arrl_ld)
+    right_layout:add(mytextclock)
+    right_layout:add(arrl_dl)
     right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
