@@ -61,7 +61,7 @@ beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker/t
 -- common
 modkey     = "Mod4"
 altkey     = "Mod1"
-terminal   = "sakura"
+terminal   = "lxterminal"
 editor     = "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -420,22 +420,18 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioRaiseVolume",
         function ()
             awful.util.spawn("ponymix increase 5")
-            volumewidget.update()
         end),
     awful.key({ }, "XF86AudioLowerVolume",
         function ()
             awful.util.spawn("ponymix decrease 5")
-            volumewidget.update()
         end),
     awful.key({ altkey }, "m",
         function ()
             awful.util.spawn("ponymix toggle")
-            volumewidget.update()
         end),
     awful.key({ altkey, "Control" }, "m",
         function ()
             awful.util.spawn("ponymix set-volume 100")
-            volumewidget.update()
         end),
 
     -- Copy to clipboard
