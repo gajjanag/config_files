@@ -110,7 +110,7 @@ mymainmenu = awful.menu.new({ items = require("menugen").build_menu(), theme = {
 markup = lain.util.markup
 
 -- Textclock
-mytextclock = wibox.widget.background(awful.widget.textclock(" %a %d %b  %H:%M"), "#313131")
+mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
 
 -- calendar
 lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
@@ -131,18 +131,9 @@ cpuwidget = wibox.widget.background(lain.widgets.cpu({
     end
 }), "#313131")
 
--- Coretemp
-tempicon = wibox.widget.imagebox(beautiful.widget_temp)
-tempwidget = lain.widgets.temp({
-    settings = function()
-        widget:set_text(" " .. coretemp_now .. "°C ")
-    end,
-})
-
 -- Battery
 baticon = wibox.widget.imagebox(beautiful.widget_battery)
-baticonbg = wibox.widget.background(baticon, "#313131")
-batwidget = wibox.widget.background(lain.widgets.bat({
+batwidget = lain.widgets.bat({
     settings = function()
         if bat_now.status ~= "Discharging" then
             baticon:set_image(beautiful.widget_ac)
@@ -156,18 +147,18 @@ batwidget = wibox.widget.background(lain.widgets.bat({
         widget:set_markup(" " .. bat_now.perc .. "% ")
     end,
     battery = "BAT1",
-}), "#313131")
+})
 
 -- Net
-neticon = wibox.widget.imagebox(beautiful.widget_net)
+neticon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_net), "#313131")
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
-netwidget = lain.widgets.net({
+netwidget = wibox.widget.background(lain.widgets.net({
     settings = function()
         widget:set_markup(markup("#7AC82E", " " .. net_now.received)
                           .. " " ..
                           markup("#46A8C3", " " .. net_now.sent .. " "))
     end
-})
+}), "#313131")
 
 -- Weather
 weathericon = wibox.widget.imagebox(beautiful.widget_weather)
@@ -193,6 +184,7 @@ arrl_ld:set_image(beautiful.arrl_ld)
 mywibox = {}
 mypromptbox = {}
 mylayoutbox = {}
+mylayoutboxbg = {}
 mytaglist = {}
 mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
@@ -249,6 +241,7 @@ for s = 1, screen.count() do
                             awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
                             awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
                             awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
+    mylayoutboxbg[s] = wibox.widget.background(mylayoutbox[s], "#313131")
 
     -- Create a taglist widget
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
@@ -281,18 +274,15 @@ for s = 1, screen.count() do
     right_layout:add(cpuicon)
     right_layout:add(cpuwidget)
     right_layout:add(arrl_dl)
-    right_layout:add(tempicon)
-    right_layout:add(tempwidget)
-    right_layout:add(arrl_ld)
-    right_layout:add(baticonbg)
+    right_layout:add(baticon)
     right_layout:add(batwidget)
-    right_layout:add(arrl_dl)
+    right_layout:add(arrl_ld)
     right_layout:add(neticon)
     right_layout:add(netwidget)
-    right_layout:add(arrl_ld)
-    right_layout:add(mytextclock)
     right_layout:add(arrl_dl)
-    right_layout:add(mylayoutbox[s])
+    right_layout:add(mytextclock)
+    right_layout:add(arrl_ld)
+    right_layout:add(mylayoutboxbg[s])
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
