@@ -166,6 +166,9 @@ set shiftwidth=4
 set tabstop=4
 set smarttab
 
+" Allow tabs in Makefiles.
+autocmd FileType make,automake set noexpandtab shiftwidth=8 softtabstop=8
+
 set formatoptions=lc
 set lbr
 
