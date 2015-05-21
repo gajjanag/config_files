@@ -19,3 +19,4 @@ This is meant to be used with the [lain-git](https://aur.archlinux.org/packages/
 * gpg.conf: configuration for [GnuPG](https://gnupg.org), mostly to use more secure default algorithms.
 * connman.conf: [ConnMan](https://01.org/connman) configuration file with minor tweaks as detailed in the [Arch wiki](https://wiki.archlinux.org/index.php/Connman).
 * i3lock-sleep.service: Uses [i3lock](https://github.com/popoffka/i3lock), and this systemd service file automatically locks screen while suspending.
+* juliarc.jl: [Julia](https://julialang.org) settings.
