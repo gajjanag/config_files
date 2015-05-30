@@ -70,8 +70,6 @@ if v:version >= '703'
     set undoreload=50000
 endif
 
-" Set up template files
-:au BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
 
 " show matching parens, brackets
 set showmatch
@@ -118,13 +116,17 @@ if has("autocmd")
     augroup END
 
     " remove whitespace
-    autocmd BufWritePre *.c :%s/\s\+$//e
-    autocmd BufWritePre *.cpp :%s/\s\+$//e
-    autocmd BufWritePre *.py :%s/\s\+$//e
-    autocmd BufWritePre *.jl :%s/\s\+$//e
-    autocmd BufWritePre *.m :%s/\s\+$//e
-    autocmd BufWritePre *.txt :%s/\s\+$//e
-    autocmd BufWritePre *.tex :%s/\s\+$//e
+    autocmd BufWritePre *.c,*.cpp,*.py,*.jl,*.m,*.tex,*.txt,*.vimrc :%s/\s\+$//e
+
+    " template files
+    autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
+
+    " allow tabs in Makefile
+    autocmd FileType make,automake set noexpandtab shiftwidth=8 softtabstop=8
+
+    " project settings
+    autocmd BufRead,BufNewFile ~/projects/ffmpeg/* setlocal cindent cinoptions=(0
+    autocmd BufRead,BufNewFile ~/projects/linux/* setlocal noexpandtab tabstop=8 shiftwidth=8 textwidth=78
 else
     set autoindent
 endif
@@ -168,9 +170,6 @@ set expandtab
 set shiftwidth=4
 set tabstop=4
 set smarttab
-
-" Allow tabs in Makefiles.
-autocmd FileType make,automake set noexpandtab shiftwidth=8 softtabstop=8
 
 set formatoptions=lc
 set lbr
