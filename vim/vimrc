@@ -70,6 +70,9 @@ if v:version >= '703'
     set undoreload=50000
 endif
 
+" Set up template files
+:au BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
+
 " show matching parens, brackets
 set showmatch
 
