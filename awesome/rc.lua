@@ -162,7 +162,7 @@ netwidget = wibox.widget.background(lain.widgets.net({
 
 -- Weather
 weathericon = wibox.widget.imagebox(beautiful.widget_weather)
-yawn = lain.widgets.yawn(2509769, {
+yawn = lain.widgets.yawn(2373572, {
     settings = function()
         widget:set_markup(forecast:lower() .. " @ " .. units .. "°F ")
     end,
