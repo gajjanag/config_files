@@ -1,0 +1,36 @@
+#!/bin/sh
+# TODO: solve libx265 when it gets updated
+cd ~/projects/ffmpeg
+./configure \
+    --prefix=/usr \
+    --enable-gpl \
+    --enable-version3 \
+    --disable-static \
+    --enable-shared \
+    --disable-stripping \
+    --enable-gnutls \
+    --enable-avisynth \
+    --enable-avresample \
+    --enable-fontconfig \
+    --enable-libass \
+    --enable-libbluray \
+    --enable-libfreetype \
+    --enable-libfribidi \
+    --enable-libgsm \
+    --enable-libmodplug \
+    --enable-libmp3lame \
+    --enable-libopencore_amrnb \
+    --enable-libopencore_amrwb \
+    --enable-libopenjpeg \
+    --enable-libopus \
+    --enable-libpulse \
+    --enable-libschroedinger \
+    --enable-libspeex \
+    --enable-libssh \
+    --enable-libtheora \
+    --enable-libv4l2 \
+    --enable-libvorbis \
+    --enable-libvpx \
+    --enable-libx264 \
+    --enable-libxvid \
+    --enable-x11grab
