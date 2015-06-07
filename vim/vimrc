@@ -211,7 +211,6 @@ set autoread
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " open definition in new veritcal split
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-set tags=.tags,tags;/
 
 set wildmode=longest,list,full
 set wildmenu
@@ -241,9 +240,8 @@ vnoremap > >gv
 vnoremap < <gv
 
 " map tag commands to be nicer
-nmap <C-[> <C-T>
-" nmap <C-Right> <C-]>
-" nmap <C-Left> <C-T>
+nmap <C-Right> <C-]>
+nmap <C-Left> <C-T>
 
 " toggle nu and relnu with control-K
 function! g:ToggleNuMode()
