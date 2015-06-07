@@ -3,6 +3,7 @@
 	name = Ganesh Ajjanagadde
 [core]
 	editor = vim
+	excludesfile = ~/.gitignore
 [merge]
 	tool = vimdiff
 [color]
