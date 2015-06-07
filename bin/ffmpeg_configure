@@ -1,5 +1,4 @@
 #!/bin/sh
-# TODO: solve libx265 when it gets updated
 cd ~/projects/ffmpeg
 ./configure \
     --prefix=/usr \
@@ -32,5 +31,6 @@ cd ~/projects/ffmpeg
     --enable-libvorbis \
     --enable-libvpx \
     --enable-libx264 \
+    --enable-libx265 \
     --enable-libxvid \
     --enable-x11grab
