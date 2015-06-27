@@ -1,3 +1,4 @@
 # common packages to load
-using Gadfly
-using Distributions
+# using Gadfly (fancy plotting)
+# using PyPlot (simple plotting)
+# using Distributions (statistics/probability)
