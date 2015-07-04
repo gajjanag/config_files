@@ -161,15 +161,20 @@ netwidget = wibox.widget.background(lain.widgets.net({
 }), "#313131")
 
 -- Weather
-weathericon = wibox.widget.imagebox(beautiful.widget_weather)
-yawn = lain.widgets.yawn(2373572, {
+cambridge_id =  6254926
+myweather = lain.widgets.weather({
+    city_id = cambridge_id,
+    units = "imperial",
     settings = function()
-        widget:set_markup(forecast:lower() .. " @ " .. units .. "°F ")
-    end,
-    u = "f"
+        weather_desc = weather_now["weather"][1]["description"]:lower()
+        temp = math.floor(weather_now["main"]["temp"])
+        wind_speed = math.floor(weather_now["wind"]["speed"])
+        wind_dir = math.floor(weather_now["wind"]["deg"])
+        widget:set_markup(weather_desc .. " @ " .. temp .. "°F, " .. wind_speed .. "mph " .. wind_dir .. "° ")
+    end
 })
-yawnbg = wibox.widget.background(yawn.widget, "#313131")
-yawniconbg = wibox.widget.background(yawn.icon, "#313131")
+myweatherbg = wibox.widget.background(myweather.widget, "#313131")
+myweathericonbg = wibox.widget.background(myweather.icon, "#313131")
 
 -- Separators
 spr = wibox.widget.textbox(' ')
@@ -265,8 +270,8 @@ for s = 1, screen.count() do
     right_layout:add(spr)
     right_layout:add(arrl)
     right_layout:add(arrl_ld)
-    right_layout:add(yawniconbg)
-    right_layout:add(yawnbg)
+    right_layout:add(myweatherbg)
+    right_layout:add(myweathericonbg)
     right_layout:add(arrl_dl)
     right_layout:add(memicon)
     right_layout:add(memwidget)
@@ -395,6 +400,7 @@ globalkeys = awful.util.table.join(
 
     -- Widgets popups
     awful.key({ altkey,           }, "c",      function () lain.widgets.calendar:show(7) end),
+    awful.key({ altkey,           }, "w",      function () myweather.show(5) end),
 
     -- Screen brightness
     awful.key({ }, "XF86MonBrightnessUp",
