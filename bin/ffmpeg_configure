@@ -2,6 +2,8 @@
 cd ~/projects/ffmpeg
 ./configure \
     --prefix=/usr \
+    --cc='ccache gcc' \
+    --extra-cflags='-fdiagnostics-color' \
     --enable-gpl \
     --enable-version3 \
     --disable-static \
