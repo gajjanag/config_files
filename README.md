@@ -21,3 +21,4 @@ This is meant to be used with the [lain-git](https://aur.archlinux.org/packages/
 * i3lock-sleep.service: Uses [i3lock](https://github.com/popoffka/i3lock), and this systemd service file automatically locks screen while suspending.
 * juliarc.jl: [Julia](https://julialang.org) settings.
 * ctags: [ctags](https://en.wikipedia.org/wiki/Ctags) settings.
+* ccache.conf: configuration for [ccache](https://ccache.samba.org), a very useful compilation cache speeding up builds on large projects.
