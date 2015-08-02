@@ -39,7 +39,26 @@ alias androidmount='jmtpfs ~/mtp'
 alias androidumount='fusermount -u ~/mtp'
 alias usbmount='mount /mnt/usb'
 alias usbumount='umount /mnt/usb'
-alias athenasync='rsync -avz --delete ~/books ~/courses ~/dev ~/ganesh ~/photos ~/research ~/doc ~/UROP athena.dialup.mit.edu:~/Private'
+alias athenasync='rsync -avz --delete \
+~/books \
+~/courses \
+~/dev \
+~/ganesh \
+~/photos \
+~/research \
+~/doc \
+~/UROP \
+athena.dialup.mit.edu:~/Private'
+alias athenarestore='rsync -avz --delete \
+athena.dialup.mit.edu:~/Private/books \
+athena.dialup.mit.edu:~/Private/courses \
+athena.dialup.mit.edu:~/Private/dev \
+athena.dialup.mit.edu:~/Private/ganesh \
+athena.dialup.mit.edu:~/Private/photos \
+athena.dialup.mit.edu:~/Private/research \
+athena.dialup.mit.edu:~/Private/doc \
+athena.dialup.mit.edu:~/Private/UROP \
+~'
 alias gitupsub='git submodule foreach --recursive git pull origin master'
 
 # Privileged access
