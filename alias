@@ -40,6 +40,7 @@ alias androidumount='fusermount -u ~/mtp'
 alias usbmount='mount /mnt/usb'
 alias usbumount='umount /mnt/usb'
 alias athenasync='rsync -avz --delete \
+~/.ssh \
 ~/books \
 ~/courses \
 ~/dev \
@@ -50,6 +51,7 @@ alias athenasync='rsync -avz --delete \
 ~/UROP \
 athena.dialup.mit.edu:~/Private'
 alias athenarestore='rsync -avz --delete \
+athena.dialup.mit.edu:~/Private/.ssh \
 athena.dialup.mit.edu:~/Private/books \
 athena.dialup.mit.edu:~/Private/courses \
 athena.dialup.mit.edu:~/Private/dev \
