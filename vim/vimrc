@@ -57,7 +57,16 @@ set shortmess+=r
 set bs=2
 set showmode
 set shiftround
+
+" make wrapping the way I want: do not break in middle of word
+" and highlight above 80 columns
 set wrap
+set linebreak
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
 
 " Set up backup location and enable
 " the double slash means editing /etc/X11/x.org and ~/x.org won't clobber
@@ -69,7 +78,6 @@ if v:version >= '703'
     set undofile
     set undoreload=50000
 endif
-
 
 " show matching parens, brackets
 set showmatch
