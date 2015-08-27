@@ -41,6 +41,8 @@ alias usbmount='mount /mnt/usb'
 alias usbumount='umount /mnt/usb'
 alias athenasync='rsync -avz --delete \
 ~/.ssh \
+~/projects/ffmpeg/temp \
+~/projects/ffmpeg/patches \
 ~/books \
 ~/courses \
 ~/dev \
@@ -60,6 +62,8 @@ athena.dialup.mit.edu:~/Private/photos \
 athena.dialup.mit.edu:~/Private/research \
 athena.dialup.mit.edu:~/Private/doc \
 athena.dialup.mit.edu:~/Private/UROP \
+athena.dialup.mit.edu:~/Private/temp \
+athena.dialup.mit.edu:~/Private/patches \
 ~'
 alias gitupsub='git submodule foreach --recursive git pull origin master'
 
