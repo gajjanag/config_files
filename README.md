@@ -22,3 +22,4 @@ This is meant to be used with the [lain-git](https://aur.archlinux.org/packages/
 * juliarc.jl: [Julia](https://julialang.org) settings.
 * ctags: [ctags](https://en.wikipedia.org/wiki/Ctags) settings.
 * ccache.conf: configuration for [ccache](https://ccache.samba.org), a very useful compilation cache speeding up builds on large projects.
+* qpdfview: configuration for [qpdfview](https://launchpad.net/qpdfview), a very elegant, simple qt/poppler based tabbed pdf/djvu/ps viewer.
