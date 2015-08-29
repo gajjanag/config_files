@@ -39,33 +39,39 @@ alias androidmount='jmtpfs ~/mtp'
 alias androidumount='fusermount -u ~/mtp'
 alias usbmount='mount /mnt/usb'
 alias usbumount='umount /mnt/usb'
-alias athenasync='rsync -avz --delete \
-~/.ssh \
-~/projects/ffmpeg/temp \
-~/projects/ffmpeg/patches \
-~/books \
-~/courses \
-~/dev \
-~/ganesh \
-~/photos \
-~/research \
-~/doc \
-~/UROP \
-athena.dialup.mit.edu:~/Private'
-alias athenarestore='rsync -avz --delete \
-athena.dialup.mit.edu:~/Private/.ssh \
-athena.dialup.mit.edu:~/Private/books \
-athena.dialup.mit.edu:~/Private/courses \
-athena.dialup.mit.edu:~/Private/dev \
-athena.dialup.mit.edu:~/Private/ganesh \
-athena.dialup.mit.edu:~/Private/photos \
-athena.dialup.mit.edu:~/Private/research \
-athena.dialup.mit.edu:~/Private/doc \
-athena.dialup.mit.edu:~/Private/UROP \
-athena.dialup.mit.edu:~/Private/temp \
-athena.dialup.mit.edu:~/Private/patches \
-~'
-alias gitupsub='git submodule foreach --recursive git pull origin master'
+
+# This is needed for incompatibilites regarding string splitting.
+args() {
+    echo $*
+}
+
+# Backup stuff.
+user_name=gajjanag
+imp_dirs=".ssh \
+.keys \
+temp \
+books \
+courses \
+dev \
+ganesh \
+research \
+doc"
+src_loc="/home/$user_name"
+backup_loc=$user_name@athena.dialup.mit.edu:Private
+local_dirs=""
+remote_dirs=""
+for dir in $(args $imp_dirs); do
+    local_dirs="${local_dirs} $src_loc/$dir"
+done
+for dir in $(args $imp_dirs); do
+    remote_dirs="${remote_dirs} $backup_loc/$dir"
+done
+athenasync() {
+    eval "rsync -av --delete $local_dirs $backup_loc"
+}
+athenarestore() {
+    eval "rsync -av --delete $remote_dirs $src_loc"
+}
 
 # Privileged access
 if [ $UID -ne 0 ]; then
