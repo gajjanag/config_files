@@ -1,0 +1,6 @@
+[Unit]
+Description=Copy over tlp configuration once a week
+
+[Service]
+Type=oneshot
+ExecStart=cp /home/gajjanag/.dotfiles/tlp /etc/default/tlp
