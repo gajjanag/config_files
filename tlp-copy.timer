@@ -4,7 +4,7 @@ Documentation=man:tlp
 
 [Timer]
 OnCalendar=weekly
-AccuracySec=1h
+AccuracySec=12h
 Persistent=true
 
 [Install]
