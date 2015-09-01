@@ -96,21 +96,28 @@ user_pref("dom.indexedDB.enabled", false);
 // Comment out this line depending on this
 user_pref("dom.storage.enabled", false);
 
+// WebTelephony
+// This is meant for sending/receiving phone calls, and is NOT the same as
+// WebRTC. There are security issues, e.g placement of calls to high cost
+// numbers, routing through high cost network, MITM, legality, etc.
+// We force disable this, though this is currently the default.
+// ref: https://wiki.mozilla.org/WebAPI/Security/WebTelephony
+user_pref("dom.telephony.enabled", false);
+
 // Firefox Hello / WebRTC in general
 // There are large concerns about IP address leakage via WebRTC
 // ref: https://webrtchacks.com/dear-ny-times/ and many others
 // However, it is still far better than proprietary solns, like Skype/GHangouts
 // Note that uBlock Origin has a dialog box to block such IP address harvesting
 // Although uBlock can't be perfect, for now I view this as a reasonable
-// compromise
-// Uncomment to disable WebRTC
+// compromise - keep it off in uBlock, enable when I want to make a call.
 // user_pref("media.peerconnection.enabled", false);
-// getUserMedia (again, uncomment to disable WebRTC)
+// getUserMedia
 // ref: https://wiki.mozilla.org/Media/getUserMedia,
 // https://developer.mozilla.org/en-US/docs/Web/API/Navigator
 // user_pref("media.navigator.enabled", false);
 
-// TODO: "Access Your Location" "Maintain Offline Storage" "Show Notifications"
+// FIXME: "Access Your Location" "Maintain Offline Storage" "Show Notifications"
 
 
 /******************************************************************************
@@ -146,9 +153,11 @@ user_pref("security.xpconnect.plugin.unrestricted", false);
 // to a large extent
 // This is forced to ensure that it will not be changed in future updates
 // Mixed passive content is a little harder to reason about, and many sites have
-// this issue (even the almighty Google); see below for this
+// this issue. However, the main one for me (Google) now handles it correctly.
+// As such, I block both. See below for more details.
 // ref: https://blog.mozilla.org/tanvi/2013/04/10/mixed-content-blocking-enabled-in-firefox-23/
 user_pref("security.mixed_content.block_active_content", true);
+user_pref("security.mixed_content.block_display_content", true);
 
 // JAR and unsafe file types
 // Disable JAR from opening unsafe file types
@@ -172,15 +181,11 @@ user_pref("security.fileuri.strict_origin_policy", true);
 // I have never been able to get this work on Linux consistently, and am
 // habituated to the Ctrl+C etc shortcuts
 // Furthermore, as this is platform specific, I disable it here
-// Change accordingly to enable
 // ref: http://kb.mozillazine.org/Clipboard.autocopy
 user_pref("clipboard.autocopy", false);
 
 // Proxy settings
 // By default, in Linux Firefox uses the system proxy settings
-// You can change this accordingly for Windows and/or if you use a proxy
-// configuration tool
-// To force a direct connection, uncomment this
 // ref: http://kb.mozillazine.org/Network.proxy.type
 // user_pref("network.proxy.type", 0);
 
@@ -189,6 +194,10 @@ user_pref("clipboard.autocopy", false);
 // as we know
 // Replace by your favorite
 user_pref("browser.search.defaultenginename", "DuckDuckGo");
+user_pref("browser.search.geoSpecificDefaults", false);
+user_pref("browser.search.order.1", "DuckDuckGo");
+user_pref("browser.search.order.2", "Bing");
+user_pref("browser.search.order.3", "Google");
 
 // asm.js
 // asm.js is essentially Firefox's answer to Chrome's NaCl
@@ -197,7 +206,6 @@ user_pref("browser.search.defaultenginename", "DuckDuckGo");
 // really, such things should be handled by native apps
 // tons of security vulnerabilities and large attack surface; thankfully it is
 // not super popular at the moment due to differences between browser vendors
-// Change accordingly based on need
 // ref: http://asmjs.org/,
 // https://www.mozilla.org/en-US/security/advisories/mfsa2015-29/,
 // https://www.mozilla.org/en-US/security/advisories/mfsa2015-50/,
@@ -211,7 +219,6 @@ user_pref("javascript.options.asmjs", false);
 // One can in theory disable this to reduce attack surface, but it is a popular
 // format
 // Reduce attack surface somewhat by disabling opentype_svg
-// Change accordingly based on need
 // ref: https://www.blackhat.com/docs/us-14/materials/us-14-DeGraaf-SVG-Exploiting-Browsers-Without-Image-Parsing-Bugs.pdf
 user_pref("gfx.font_rendering.opentype_svg.enabled", false);
 
@@ -236,23 +243,19 @@ user_pref("keyword.enabled", false);
 // ref: http://www-archive.mozilla.org/docs/end-user/domain-guessing.html
 user_pref("browser.fixup.alternate.enabled", false);
 
-// Mixed passive content
-// By default, Firefox does not block HTTP passive content (images, audio, etc)
-// served over HTTPS
-// This is still a security concern, but a much smaller one than the active
-// content issue
-// Note that this is ambiguous since many sites have issues with this, even
-// Google after many years!
-// Comment out to stop blocking such insecurely delivered content
-// ref: https://blog.mozilla.org/tanvi/2013/04/10/mixed-content-blocking-enabled-in-firefox-23/
-user_pref("security.mixed_content.block_display_content", true);
+// Disable Firefox Sync
+// It is a nice idea, with a terrible implementation
+// First off, not all preferences get synced, e.g disabling pocket.
+// Second, as soon as one fiddles with cookie settings, it fails, even if
+// cookies are still enabled.
+user_pref("services.sync.enabled", false);
 
 /******************************************************************************
  * Extensions / Plugins essentials                                            *
  *                                                                            *
  ******************************************************************************/
 
-// Permanently disable Flash; no comment needed
+// Permanently disable Flash; no comment needed.
 // Can't believe that Firefox still enables this for all the poor legacy
 // websites out there
 // Note it is redundant on good Linux distros (e.g Arch/Debian) as they don't
@@ -397,9 +400,10 @@ user_pref("browser.aboutHomeSnippets.updateUrl", "");
 user_pref("network.prefetch-next", false);
 
 // DNS prefetching
-// Like above, but easier to justify as DNS query packets are small
+// Like above, but easier to justify as DNS query packets are small.
 // Nevertheless, the same concerns as above hold, and I have not noticed a
-// significant performance impact
+// significant performance impact.
+// It also places a load on the DNS servers.
 // ref: http://kb.mozillazine.org/Network.dns.disablePrefetch,
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Controlling_DNS_prefetching,
 // https://www.usenix.org/legacy/event/leet10/tech/full_papers/Krishnan.pdf
@@ -426,16 +430,15 @@ user_pref("browser.search.suggest.enabled", false);
 
 // SSDP
 // This is a device protocol (think ffmpeg libavdevice) for e.g streaming video
-// I believe Firefox Hello requires this, hence enabled
-// Change accordingly to disable
+// Nothing I know requires this, and it is in fact disabled by default.
+// In particular, Firefox Hello does not require this.
 // ref: https://bugzilla.mozilla.org/show_bug.cgi?id=1111967
-// user_pref("browser.casting.enabled", false);
+user_pref("browser.casting.enabled", false);
 
 // OpenH.264
 // By default, Firefox downloads an open H.264 implementation on first launch
-// Allow this as I do not really care
-// UI, suffer from buffering issues, etc)
-// Change accordingly to enable (note: must be done as a preconfiguration)
+// Allow this as I do not really care.
+// note: must be done as a preconfiguration
 // ref: https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_media-capabilities,
 // http://andreasgal.com/2014/10/14/openh264-now-in-firefox/
 // user_pref("media.gmp-gmpopenh264.enabled", false);
@@ -444,9 +447,8 @@ user_pref("browser.search.suggest.enabled", false);
 // Auto updates
 // By default, Firefox checks automatically for new updates
 // For Arch/Debian users, this setting is irrelevant, and for Windows/MacOS,
-// it is essential
+// it is essential.
 // Thus, enabling it (the default) is not harmful and could be useful
-// Uncomment if you REALLY want to disable automatic updates
 // ref: https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections
 // user_pref("browser.search.update", false);
 // user_pref("app.update.auto", false);
@@ -462,7 +464,9 @@ user_pref("browser.search.suggest.enabled", false);
 // would love to totally block all cookies, but the web is broken and does
 // not work for many important sites without them
 // ref: http://kb.mozillazine.org/Network.cookie.cookieBehavior#1
-user_pref("network.cookie.lifetimePolicy", 2);
+user_pref("network.cookie.cookieBehavior", 1);
+user_pref("network.cookie.thirdparty.sessionOnly", true);
+user_pref("prefs.privacy.disable_button.view_cookies", false);
 
 /******************************************************************************
  * HTTP ambiguities (least to most)                                           *
@@ -472,12 +476,11 @@ user_pref("network.cookie.lifetimePolicy", 2);
 // CSP (Content Security Policy)
 // This helps against XSS attacks, packet sniffing, etc
 // However, it is still considered experimental and so not enabled by default
-// Some portions of this are enabled by default, we force only the experimental
-// portion
+// Some portions of this are enabled by default, we force both portions.
 // ref: https://bugzilla.mozilla.org/show_bug.cgi?id=855326,
 //https://developer.mozilla.org/en-US/docs/Web/Security/CSP/Introducing_Content_Security_Policy
+user_pref("security.csp.enable", true);
 user_pref("security.csp.experimentalEnabled", true);
-// Change below to match desired behavior
 // user_pref("security.csp.enable", true);
 
 // DNT (Do Not Track)
@@ -486,22 +489,116 @@ user_pref("security.csp.experimentalEnabled", true);
 // worse DNT can be used for browser fingerprinting
 // In other words, a website who cares enough to respect this will not need DNT
 // anyway, while websites who don't could fingerprint off this
-// Thus, we leave it turned off (the default), uncomment to change
+// Thus, we force it off (the default).
 // ref: // http://dnt.mozilla.org/,
 // https://en.wikipedia.org/wiki/Do_not_track_header,
 // https://dnt-dashboard.mozilla.org,
 // https://github.com/pyllyukko/user.js/issues/11
-// user_pref("privacy.donottrackheader.enabled", true);
+user_pref("privacy.donottrackheader.enabled", false);
+user_pref("noscript.doNotTrack.enabled", false);
+
+// Referer header
+// This is needed by many websites, though it is a privacy concern.
+// We don't disable it, but keep it slightly more controlled than the default.
+// Furthermore, we spoof it - this works on all websites I care about.
+// Also, on SSL website, we always disable it per the CIS link listed here.
+// ref: http://kb.mozillazine.org/Network.http.sendRefererHeader#0,
+// https://bugzilla.mozilla.org/show_bug.cgi?id=822869
+user_pref("network.http.sendRefererHeader", 1);
+// Send a referer header with the target URI as the source
+user_pref("network.http.referer.spoofSource", true);
+// CIS Version 1.2.0 October 21st, 2011 2.4.3 Disable Referer from an SSL Website
+user_pref("network.http.sendSecureXSiteReferrer", false);
+
+// User agent spoofing
+// This is very useful especially for Linux users, since the user agent
+// reveals many bits of information (9+ as per panopticlick). Hence, we spoof
+// ourselves to be like Windows running Firefox. If you want to take this further,
+// you could spoof the browser to be the most popular one, namely Safari/Mac.
+// However, this may lead to breakage.
+// Of course, feature detection via JavaScript may be done to fingerprint.
+// Nevertheless, most of the time I run JScript disabled, so I find this
+// an acceptible tradeoff.
+// Furthermore, it is needed for the web version of TurboTax.
+// ref: https://github.com/gorhill/uMatrix/wiki/Latest-user-agent-strings
+user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0");
 
 /******************************************************************************
  * Caching essentials                                                            *
  *                                                                            *
  ******************************************************************************/
 
+// Offline cache
+// Do not store offline cache.
+// ref: http://kb.mozillazine.org/Browser.cache.offline.enable
+user_pref("browser.cache.offline.enable", false);
+
+// Clear history on close (most things cleared by default, but we lock them).
+// However, I prefer letting Firefox manage passwords.
+// ref: https://support.mozilla.org/en-US/kb/Clear%20Recent%20History#w_how-do-i-make-firefox-clear-my-history-automatically
+user_pref("privacy.sanitize.sanitizeOnShutdown", true);
+user_pref("privacy.clearOnShutdown.cache", true);
+user_pref("privacy.clearOnShutdown.cookies", true);
+user_pref("privacy.clearOnShutdown.downloads", true);
+user_pref("privacy.clearOnShutdown.formdata", true);
+user_pref("privacy.clearOnShutdown.history", true);
+user_pref("privacy.clearOnShutdown.offlineApps", true);
+//user_pref("privacy.clearOnShutdown.passwords", true);
+user_pref("privacy.clearOnShutdown.sessions", true);
+user_pref("privacy.clearOnShutdown.siteSettings", true);
+// Don't remember browsing history.
+user_pref("places.history.enabled", false);
+
+// Make all cookies session cookies
+// By default, Firefox uses originating server's policy
+// Well, we know how this turns out: e.g google sets an INSANE 2-3 year
+// expiration policy on their cookies! We have to stop this
+user_pref("network.cookie.lifetimePolicy", 2);
+
+// Caching of SSL pages
+// This is essential to disable - SSL pages often contain sensitive information.
+// ref: CIS Version 1.2.0 October 21st, 2011 2.5.8 Disable Caching of SSL Pages,
+// http://kb.mozillazine.org/Browser.cache.disk_cache_ssl
+user_pref("browser.cache.disk_cache_ssl", false);
+
 /******************************************************************************
  * Caching ambiguities (least to most)                                           *
  *                                                                            *
  ******************************************************************************/
+
+// Private browsing
+// I do not enable it, because it is needed for Firefox Hello
+// user_pref("browser.privatebrowsing.autostart", true);
+
+// Temp files
+// Always delete temp files on exit; default in Firefox, we force it
+// ref: https://bugzil.la/238789#c19
+user_pref("browser.helperApps.deleteTempFileOnExit", true);
+
+// Browser disk cache
+// Kill browser disk cache (have not noticed any visible slowdown,
+// reduces SSD wear and/or magnetic drive fragmentation). Furthermore, it is
+// an unnecessary information leakage.
+user_pref("browser.cache.disk.enable", false);
+
+// Extra session data
+// Do not store extra session data.
+// ref: CIS Version 1.2.0 October 21st, 2011 2.5.7 Clear SSL Form Session Data,
+// http://kb.mozillazine.org/Browser.sessionstore.privacy_level#2
+// note: CIS says 1, we use 2
+user_pref("browser.sessionstore.privacy_level", 2);
+
+// Form fill
+// Do not allow Firefox to remember forms
+// ref: CIS Version 1.2.0 October 21st, 2011 2.5.6 Delete Search and Form History
+user_pref("browser.formfill.enable", false);
+user_pref("browser.formfill.expire_days", 0);
+
+// Remember signons
+// I prefer letting Firefox manage my passwords,
+// but am all ears for an alternative.
+// ref: CIS Version 1.2.0 October 21st, 2011 2.5.2 Disallow Credential Storage
+// user_pref("signon.rememberSignons", false);
 
 /******************************************************************************
  * UI essentials                                                            *
@@ -510,11 +607,19 @@ user_pref("security.csp.experimentalEnabled", true);
 
 // Outdated plugins
 // Users should be notified of outdated plugins; this is very important for
-// security
-// No idea why Firefox does not enable this by default
+// security.
+// However, Firefox's implementation of this sucks, they open a new tab
+// every time I launch the browser, saying "plugins are up to date or some such
+// useless message".
+// Look, I don't care when my plugins are up to date, I want to know ONLY
+// when they are not.
 // ref: CIS Version 1.2.0 October 21st, 2011 2.1.2 Enable Auto Notification of Outdated Plugins
 // https://wiki.mozilla.org/Firefox3.6/Plugin_Update_Awareness_Security_Review
-user_pref("plugins.update.notifyUser", true);
+user_pref("plugins.update.notifyUser", false);
+
+// Auto-fill of forms
+// Do not autofill forms until username has been entered.
+user_pref("signon.autofillForms", false);
 
 // IDN (Internationalized Domain Name)
 // Pretty important for security: by default Firefox displays IDNs in their
@@ -550,7 +655,7 @@ user_pref("security.ssl.warn_missing_rfc5746", 1);
 // silly traps like this
 // However, for general users, this can give a security benefit at minimal
 // usability cost
-// Thus for me the default is ok, uncomment to change this
+// Thus for me the default is ok
 // user_pref("dom.event.contextmenu.enabled", false);
 
 // Downloads
@@ -564,7 +669,6 @@ user_pref("security.ssl.warn_missing_rfc5746", 1);
 // Apparently this is a CIS rec, must have been one of those easy ones that
 // help "beef up" their report and give the impression that they do real work
 // In short, I change this to always download to "Desktop",
-// change accordingly for desired behavior
 // ref: CIS 2.3.2 Disable Downloading on Desktop,
 // http://kb.mozillazine.org/About:config_entries#Browser.
 user_pref("browser.download.folderList", 0);
@@ -572,16 +676,15 @@ user_pref("browser.download.folderList", 0);
 // I get irritated by this, and prefer to clean up my download dir manually
 // whenever I feel like it
 // I see no benefit in this, and leave it at the default (no prompt)
-// uncomment to change this
 // ref: https://developer.mozilla.org/en/Download_Manager_preferences
-// user_pref("browser.download.useDownloadDir", true);
+user_pref("browser.download.useDownloadDir", true);
 
 // Always keep Firefox as a default: in spite of all its flaws, Firefox based
-// browsers are the best of the lot
+// browsers are the best of the lot.
 // For instance, all the "hardcore" browsers like Iceweasel, IceCat, and the
 // Tor browser are based off a Firefox codebase
-// I see no harm in this, but some of you may want to change this
-user_pref("browser.shell.checkDefaultBrowser", true);
+// Seems like many like to keep this off, so I will do that as well here.
+user_pref("browser.shell.checkDefaultBrowser", false);
 
 // Autocomplete
 // Autocomplete has limited use for me since I keep no history
@@ -591,7 +694,7 @@ user_pref("browser.shell.checkDefaultBrowser", true);
 // http://kb.mozillazine.org/Disabling_autocomplete_-_Firefox#Firefox_3.5
 user_pref("browser.urlbar.autoFill", false);
 user_pref("browser.urlbar.autoFill.typed", false);
-user_pref("browser.urlbar.autocomplete.enabled", true);
+user_pref("browser.urlbar.autocomplete.enabled", false);
 // Also disable autocompleting via bookmarks which I find annoying
 // ref: http://www.labnol.org/software/browsers/prevent-firefox-showing-bookmarks-address-location-bar/3636/,
 // http://kb.mozillazine.org/Browser.urlbar.maxRichResults
@@ -606,71 +709,32 @@ user_pref("browser.urlbar.maxRichResults", 0);
 // The "hard side" involving user interaction is where most projects fail,
 // and Firefox is no exception.
 // For now, do not impose anything.
-// TODO: revisit this if needed.
+// FIXME: revisit this if needed.
 
 /******************************************************************************
  * TLS / HTTPS / OCSP essentials                                                            *
  *                                                                            *
  ******************************************************************************/
 
-// See above general comments
+// See above FIXME
 
 /******************************************************************************
  * TLS / HTTPS / OCSP  ambiguities (least to most)                                           *
  *                                                                            *
  ******************************************************************************/
 
-// See above general comments
+// See above FIXME
 
 /******************************************************************************
  * Ciphers essentials                                                            *
  *                                                                            *
  ******************************************************************************/
 
-// See above general comments
+// See above FIXME
 
 /******************************************************************************
  * Ciphers  ambiguities (least to most)                                           *
  *                                                                            *
  ******************************************************************************/
 
-// See above general comments
-
-
-// Make all cookies session cookies
-// By default, Firefox uses originating server's policy
-// Well, we know how this turns out: e.g google sets an INSANE 2-3 year
-// expiration policy on their cookies! We have to stop this
-user_pref("network.cookie.lifetimePolicy", 2);
-////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////
-// Browsing history settings
-// Clear on shutdown (most things cleared by default)
-user_pref("privacy.sanitize.sanitizeOnShutdown", true);
-
-// Additional clearing
-user_pref("privacy.clearOnShutdown.offlineApps", true);
-user_pref("privacy.clearOnShutdown.siteSettings", true);
-////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////
-// More ambiguous settings
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////
-// Less essential
-// Kill browser cache (have not noticed any visible slowdown,
-// reduces SSD wear and/or magnetic drive fragmentation
-user_pref("browser.cache.disk.enable", false);
-
-// Place all downloads in Desktop folder: Desktop folder is anyway created
-// on most OS configurations, is quicker to access, and unifies the location of
-// "temporary" stuff
-// NOTE: this is not cross platform!
-user_pref("browser.download.dir", "/home/gajjanag/Desktop");
-
-////////////////////////////////////////////////////////////////////////////////
+// See above FIXME
