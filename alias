@@ -13,7 +13,7 @@ alias vi='vim'
 alias mutt='cd ~/Downloads && mutt'
 alias reboot='systemctl reboot'
 alias shutdown='systemctl poweroff'
-alias suspend='i3lock && systemctl suspend'
+alias suspend='systemctl suspend'
 # }}}
 
 ## New commands ## {{{
