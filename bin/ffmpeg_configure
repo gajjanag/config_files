@@ -4,6 +4,7 @@ cd ~/projects/ffmpeg
     --prefix=/usr \
     --cc='ccache gcc' \
     --extra-cflags='-fdiagnostics-color' \
+	--samples='../../samples' \
     --enable-gpl \
     --enable-version3 \
     --disable-static \
