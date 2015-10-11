@@ -73,3 +73,9 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+
+# ssh-agent
+# run ssh agent at login, this is useful for caching ssh credentials
+# WARNING: ssh-agent by itself is fine, but please note the security/usability
+# tradeoffs of ssh-add afterwards!
+eval $(ssh-agent)

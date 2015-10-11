@@ -19,7 +19,3 @@ export TERM=xterm-256color
 # useful in the event that a process crashes and has modified terminal state
 ttyctl -f
 
-# run ssh agent at login, this is useful for caching ssh credentials
-# WARNING: ssh-agent by itself is fine, but please note the security/usability
-# tradeoffs of ssh-add afterwards!
-eval $(ssh-agent)
