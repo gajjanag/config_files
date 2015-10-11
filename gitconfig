@@ -23,5 +23,8 @@
 	smtpserver = smtp.googlemail.com
 	smtpencryption = tls
 	smtpserverport = 587
+	to = ffmpeg-devel@ffmpeg.org
 [color "diff"]
 	whitespace = red reverse
+[diff]
+	renames = copy
