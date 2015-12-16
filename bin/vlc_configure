@@ -1,0 +1,21 @@
+#!/bin/sh
+./bootstrap
+CXXFLAGS="$CXXFLAGS -fPIC"
+sed -i -e 's:truetype/freefont:TTF:g' modules/text_renderer/freetype.c
+sed -i -e 's:truetype/ttf-dejavu:TTF:g' modules/visualization/projectm.cpp
+./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --disable-rpath \
+    --enable-faad \
+    --enable-nls \
+    --enable-lirc \
+    --enable-pvr \
+    --enable-ncurses \
+    --enable-realrtsp \
+    --enable-xosd \
+    --enable-aa \
+    --enable-vcdx \
+    --enable-upnp \
+    --enable-opus \
+    --enable-sftp \
