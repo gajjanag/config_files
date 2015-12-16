@@ -1,0 +1,22 @@
+#!/bin/sh
+cd /home/gajjanag/projects/ffmpeg || exit 1
+make uninstall
+rm -rf /usr/lib/libavcodec.so*
+rm -rf /usr/lib/libavformat.so*
+rm -rf /usr/lib/libavfilter.so*
+rm -rf /usr/lib/libavdevice.so*
+rm -rf /usr/lib/libavresample.so*
+rm -rf /usr/lib/libavutil.so*
+rm -rf /usr/lib/libswresample.so*
+rm -rf /usr/lib/libswscale.so*
+rm -rf /usr/lib/libpostproc.so*
+rm -rf /usr/include/libavutil
+rm -rf /usr/include/libswscale
+rm -rf /usr/include/libswresample
+rm -rf /usr/include/libpostproc
+rm -rf /usr/include/libavresample
+rm -rf /usr/include/libavcodec
+rm -rf /usr/include/libavformat
+rm -rf /usr/include/libavfilter
+rm -rf /usr/include/libavdevice
+cd / || exit 1
