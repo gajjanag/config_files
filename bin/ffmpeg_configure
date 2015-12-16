@@ -3,19 +3,20 @@ cd ~/projects/ffmpeg
 ./configure \
     --prefix=/usr \
     --cc='ccache gcc' \
-    --extra-cflags='-fdiagnostics-color' \
+    --extra-cflags='-ftree-vectorize -march=native -fdiagnostics-color' \
     --samples='../../samples' \
     --enable-gpl \
     --enable-version3 \
     --disable-static \
+    --disable-debug \
     --enable-shared \
-    --disable-stripping \
     --enable-gnutls \
     --enable-avisynth \
     --enable-avresample \
     --enable-fontconfig \
     --enable-libass \
     --enable-libbluray \
+    --enable-libdcadec \
     --enable-libfreetype \
     --enable-libfribidi \
     --enable-libgsm \
@@ -33,7 +34,8 @@ cd ~/projects/ffmpeg
     --enable-libv4l2 \
     --enable-libvorbis \
     --enable-libvpx \
+    --enable-libwebp \
     --enable-libx264 \
     --enable-libx265 \
     --enable-libxvid \
-    --enable-x11grab
+    --enable-x11grab \
