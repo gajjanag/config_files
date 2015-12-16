@@ -20,7 +20,7 @@
 	default = simple
 [sendemail]
 	smtpuser = gajjanagadde@gmail.com
-	smtpserver = smtp.googlemail.com
+	smtpserver = smtp.gmail.com
 	smtpencryption = tls
 	smtpserverport = 587
 	to = ffmpeg-devel@ffmpeg.org
