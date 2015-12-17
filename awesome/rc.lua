@@ -161,7 +161,8 @@ netwidget = wibox.widget.background(lain.widgets.net({
 }), "#313131")
 
 -- Weather
-cambridge_id =  6254926
+cambridge_id  = 6254926
+union_city_id = 5404554
 myweather = lain.widgets.weather({
     city_id = cambridge_id,
     units = "imperial",
