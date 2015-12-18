@@ -136,6 +136,10 @@ if has("autocmd")
     autocmd BufRead,BufNewFile ~/projects/ffmpeg/* setlocal cindent cinoptions=(0
     autocmd BufRead,BufNewFile ~/projects/linux/* setlocal noexpandtab tabstop=8 shiftwidth=8 textwidth=78
 
+    " gutentags sometimes spawns ctags, and does not manage it correctly
+    " so kill it on exit with script (place it in your $PATH)
+    autocmd VimLeave * !kill_ctags
+
     " automatically decompress gzipped files
     augroup gzip
         autocmd!
