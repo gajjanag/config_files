@@ -16,6 +16,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 exec awesome
+# lower power consumption awesome config, uncomment below
+# exec awesome -c /etc/xdg/awesome/rc.lua
+
 # exec gnome-session
 # exec startkde
 # exec startxfce4
