@@ -28,3 +28,4 @@
 	whitespace = red reverse
 [diff]
 	renames = copy
+	algorithm = patience
