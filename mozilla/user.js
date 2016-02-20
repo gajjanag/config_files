@@ -521,7 +521,8 @@ user_pref("network.http.sendSecureXSiteReferrer", false);
 // an acceptible tradeoff.
 // Furthermore, it is needed for the web version of TurboTax.
 // ref: https://github.com/gorhill/uMatrix/wiki/Latest-user-agent-strings
-user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0");
+// user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0");
+// user_pref("general.useragent.override", "Mozilla/5.0 (Android; Linux armv7l; rv:9.0) Gecko/20111216 Firefox/9.0 Fennec/9.0");
 
 /******************************************************************************
  * Caching essentials                                                            *
