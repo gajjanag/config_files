@@ -3,7 +3,7 @@ cd ~/projects/ffmpeg
 ./configure \
     --prefix=/usr \
     --cc='ccache gcc' \
-    --extra-cflags='-ftree-vectorize -march=native -fdiagnostics-color' \
+    --extra-cflags='-march=native -fdiagnostics-color' \
     --samples='../../samples' \
     --enable-gpl \
     --enable-version3 \
