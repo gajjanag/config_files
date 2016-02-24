@@ -1,5 +1,5 @@
 [user]
-	email = gajjanagadde@gmail.com
+	email = gajjanag@gmail.com
 	name = Ganesh Ajjanagadde
 [core]
 	editor = vim
@@ -19,7 +19,7 @@
 	defaults = simple
 	default = simple
 [sendemail]
-	smtpuser = gajjanagadde@gmail.com
+	smtpuser = gajjanag@gmail.com
 	smtpserver = smtp.gmail.com
 	smtpencryption = tls
 	smtpserverport = 587
