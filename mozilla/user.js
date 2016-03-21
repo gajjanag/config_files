@@ -498,14 +498,15 @@ user_pref("privacy.donottrackheader.enabled", false);
 user_pref("noscript.doNotTrack.enabled", false);
 
 // Referer header
-// This is needed by many websites, though it is a privacy concern.
-// We don't disable it, but keep it slightly more controlled than the default.
-// Furthermore, we spoof it - this works on all websites I care about.
+// This is unfortunately needed by many websites, though it is a privacy concern.
+// In particular, Wolfram Alpha needs it.
+// We don't disable it, but keep it slightly more controlled than the default
+// by spoofing it - this works on all websites I care about.
 // Also, on SSL website, we always disable it per the CIS link listed here.
 // ref: http://kb.mozillazine.org/Network.http.sendRefererHeader#0,
 // https://bugzilla.mozilla.org/show_bug.cgi?id=822869
-user_pref("network.http.sendRefererHeader", 1);
-// Send a referer header with the target URI as the source
+// user_pref("network.http.sendRefererHeader", 1);
+// Send a referer header with the target URI as the source, thus spoofing it
 user_pref("network.http.referer.spoofSource", true);
 // CIS Version 1.2.0 October 21st, 2011 2.4.3 Disable Referer from an SSL Website
 user_pref("network.http.sendSecureXSiteReferrer", false);
