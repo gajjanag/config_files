@@ -79,5 +79,5 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 # WARNING: ssh-agent by itself is fine, but please note the security/usability
 # tradeoffs of ssh-add afterwards!
 if [[ -o login ]]; then
-    eval $(ssh-agent)
+    eval $(ssh-agent) 2>&1 >/dev/null
 fi
