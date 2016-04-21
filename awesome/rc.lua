@@ -146,6 +146,7 @@ batwidget = lain.widgets.bat({
         end
         widget:set_markup(" " .. bat_now.perc .. "% ")
     end,
+    ac = "ACAD",
     battery = "BAT1",
 })
 
