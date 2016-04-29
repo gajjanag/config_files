@@ -327,6 +327,8 @@ user_pref("browser.safebrowsing.downloads.enabled", false);
 // Remove universally loathed Pocket integration
 // ref: https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox
 user_pref("browser.pocket.enabled", false);
+// Since Firefox 45 or so need to do some more chicanery
+user_pref("extensions.pocket.enabled", false);
 
 /******************************************************************************
  * Features / Components ambiguities (least to most)                          *
