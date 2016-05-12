@@ -72,6 +72,12 @@ user_pref("webgl.disabled", true);
 // note that current Firefox gets this setting right
 user_pref("pdfjs.enableWebGL", false);
 
+// DRM bs
+// Terrible stuff for web standards, the topic has been beaten to death
+// ref: https://news.ycombinator.com/item?id=11678516
+user_pref("media.eme.enabled", false);
+user_pref("media.eme.apiVisible", false);
+
 /******************************************************************************
  * HTML5 / APIs / DOM ambiguities (least to most)                             *
  *                                                                            *
