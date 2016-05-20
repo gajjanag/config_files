@@ -123,9 +123,12 @@ user_pref("media.peerconnection.enabled", false);
 user_pref("loop.logDomains", false);
 
 // getUserMedia
+// Yet another API with limited use, but endless possibilities of abuse,
+// essentially for capturing local media streams. W3C is drafting something.
 // ref: https://wiki.mozilla.org/Media/getUserMedia,
-// https://developer.mozilla.org/en-US/docs/Web/API/Navigator
-// user_pref("media.navigator.enabled", false);
+// https://developer.mozilla.org/en-US/docs/Web/API/Navigator,
+// https://w3c.github.io/mediacapture-scenarios/scenarios.html
+user_pref("media.navigator.enabled", false);
 
 // FIXME: "Access Your Location" "Maintain Offline Storage" "Show Notifications"
 
