@@ -78,6 +78,13 @@ user_pref("pdfjs.enableWebGL", false);
 user_pref("media.eme.enabled", false);
 user_pref("media.eme.apiVisible", false);
 
+// Preventing hardware based fingerprinting, canvas, fonts, plugins, etc
+// ref: https://wiki.mozilla.org/Platform/GFX/HardwareAcceleration
+// https://www.macromedia.com/support/documentation/en/flashplayer/help/help01.html
+// https://github.com/dillbyrne/random-agent-spoofer/issues/74
+user_pref("gfx.direct2d.disabled", true);
+user_pref("layers.acceleration.disabled", true);
+
 /******************************************************************************
  * HTML5 / APIs / DOM ambiguities (least to most)                             *
  *                                                                            *
