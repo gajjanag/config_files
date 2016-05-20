@@ -114,10 +114,14 @@ user_pref("dom.telephony.enabled", false);
 // There are large concerns about IP address leakage via WebRTC
 // ref: https://webrtchacks.com/dear-ny-times/ and many others
 // However, it is still far better than proprietary solns, like Skype/GHangouts
-// Note that uBlock Origin has a dialog box to block such IP address harvesting
-// Although uBlock can't be perfect, for now I view this as a reasonable
-// compromise - keep it off in uBlock, enable when I want to make a call.
-// user_pref("media.peerconnection.enabled", false);
+// Sadly due to network effects, no one I know uses Firefox Hello anyway and
+// everyone uses their favorite junky proprietary solution. Furthermore, there
+// have been no addressals of the IP address leakage.
+// As such, completely shutdown WebRTC stuff.
+user_pref("media.peerconnection.ice.default_address_only", true);
+user_pref("media.peerconnection.enabled", false);
+user_pref("loop.logDomains", false);
+
 // getUserMedia
 // ref: https://wiki.mozilla.org/Media/getUserMedia,
 // https://developer.mozilla.org/en-US/docs/Web/API/Navigator
