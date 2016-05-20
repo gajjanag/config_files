@@ -584,8 +584,7 @@ user_pref("browser.cache.disk_cache_ssl", false);
  ******************************************************************************/
 
 // Private browsing
-// I do not enable it, because it is needed for Firefox Hello
-// user_pref("browser.privatebrowsing.autostart", true);
+user_pref("browser.privatebrowsing.autostart", true);
 
 // Temp files
 // Always delete temp files on exit; default in Firefox, we force it
