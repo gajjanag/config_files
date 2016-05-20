@@ -15,6 +15,10 @@
 // ref: https://www.mozilla.org/en-US/firefox/geolocation/
 user_pref("geo.enabled", false);
 
+// Stupid battery API
+// ref: https://developer.mozilla.org/en-US/docs/Web/API/BatteryManager
+user_pref("dom.battery.enabled", false);
+
 // Beacon (A stupid API created essentially for tracking purposes)
 // Sad thing is this comes from the W3C
 // ref: https://developer.mozilla.org/en-US/docs/Web/API/navigator.sendBeacon,
@@ -63,6 +67,11 @@ user_pref("dom.gamepad.enabled", false);
 // ref: https://developer.mozilla.org/en-US/Firefox/Releases/36#Interfaces.2FAPIs.2FDOM
 user_pref("dom.vr.enabled", false);
 
+// Notifications API: I could care less about this, the web worked fine without
+// it for ages
+// ref: https://notifications.spec.whatwg.org/
+user_pref("dom.webnotifications.enabled", false);
+
 // WebGL: huge concerns, large attack surface, and no use for people who use
 // browsers for work and not games
 // ref: http://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation
@@ -71,6 +80,10 @@ user_pref("webgl.disabled", true);
 // performance, pdf.js may be deemed broken and should not work
 // note that current Firefox gets this setting right
 user_pref("pdfjs.enableWebGL", false);
+
+// Face detection, same stuff as before. Basically make a browser a kitchen sink.
+// ref: https://bugzilla.mozilla.org/show_bug.cgi?id=999396
+user_pref("camera.control.face_detection.enabled", false);
 
 // DRM bs
 // Terrible stuff for web standards, the topic has been beaten to death
@@ -84,6 +97,17 @@ user_pref("media.eme.apiVisible", false);
 // https://github.com/dillbyrne/random-agent-spoofer/issues/74
 user_pref("gfx.direct2d.disabled", true);
 user_pref("layers.acceleration.disabled", true);
+
+// getUserMedia
+// Yet another API with limited use, but endless possibilities of abuse,
+// essentially for capturing local media streams. W3C is drafting something.
+// While at it, disable getUserMedia screen sharing
+// ref: https://wiki.mozilla.org/Media/getUserMedia,
+// https://developer.mozilla.org/en-US/docs/Web/API/Navigator,
+// https://w3c.github.io/mediacapture-scenarios/scenarios.html,
+// https://mozilla.github.io/webrtc-landing/gum_test.html
+user_pref("media.navigator.enabled", false);
+user_pref("media.getusermedia.screensharing.enabled", false);
 
 /******************************************************************************
  * HTML5 / APIs / DOM ambiguities (least to most)                             *
@@ -107,7 +131,7 @@ user_pref("dom.indexedDB.enabled", false);
 // Panopticlick (https://panopticlick.eff.org) check in Aug 2015 gave 3 bits
 // as an estimate of information from this
 // Comment out this line depending on this
-user_pref("dom.storage.enabled", false);
+//user_pref("dom.storage.enabled", false);
 
 // WebTelephony
 // This is meant for sending/receiving phone calls, and is NOT the same as
@@ -129,16 +153,7 @@ user_pref("media.peerconnection.ice.default_address_only", true);
 user_pref("media.peerconnection.enabled", false);
 user_pref("loop.logDomains", false);
 
-// getUserMedia
-// Yet another API with limited use, but endless possibilities of abuse,
-// essentially for capturing local media streams. W3C is drafting something.
-// ref: https://wiki.mozilla.org/Media/getUserMedia,
-// https://developer.mozilla.org/en-US/docs/Web/API/Navigator,
-// https://w3c.github.io/mediacapture-scenarios/scenarios.html
-user_pref("media.navigator.enabled", false);
-
 // FIXME: "Access Your Location" "Maintain Offline Storage" "Show Notifications"
-
 
 /******************************************************************************
  * Misc essentials                                                            *
@@ -152,7 +167,6 @@ user_pref("media.navigator.enabled", false);
 // proxy stuff, in which case this needs to be changed from the default
 // ref: https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers
 user_pref("network.proxy.socks_remote_dns", true);
-
 
 // Scripting of Plugins by Javascript
 // This opens a whole can of worms and is similar to the universally hated
@@ -270,6 +284,21 @@ user_pref("browser.fixup.alternate.enabled", false);
 // cookies are still enabled.
 user_pref("services.sync.enabled", false);
 
+// Fingerprinting surfaces
+// Media statistics
+// ref: https://bugzil.la/654550,
+// https://github.com/pyllyukko/user.js/issues/9#issuecomment-100468785
+// https://github.com/pyllyukko/user.js/issues/9#issuecomment-148922065
+user_pref("media.video_stats.enabled", false);
+// Build ID
+// Value taken from Tor Browser
+// ref: https://bugzil.la/583181
+user_pref("general.buildID.override", "20100101");
+// Font fingerprinting
+// ref: http://www.browserleaks.com/fonts,
+// https://github.com/pyllyukko/user.js/issues/120
+user_pref("browser.display.use_document_fonts", 0);
+
 /******************************************************************************
  * Extensions / Plugins essentials                                            *
  *                                                                            *
@@ -282,6 +311,10 @@ user_pref("services.sync.enabled", false);
 // install it by default
 // ref: too many to count!
 user_pref("plugin.state.flash", 0);
+
+// Disable add on metadata
+// ref: https://blog.mozilla.org/addons/how-to-opt-out-of-add-on-metadata-updates/
+user_pref("extensions.getAddons.cache.enabled", false);
 
 /******************************************************************************
  * Extensions / Plugins ambiguities (least to most)                           *
@@ -306,6 +339,14 @@ user_pref("extensions.update.enabled", true);
 // ref: http://kb.mozillazine.org/Extensions.blocklist.enabled
 user_pref("extensions.blocklist.enabled", true);
 
+// built in PDF viewer
+// I can live without the pdf preview, anyway the file gets downloaded into
+// /tmp
+// This rec was made on the basis of some CVE that I have no interest in checking,
+// hence placed in ambiguities:
+// ref: https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-2743
+user_pref("pdfjs.disabled", true);
+
 /******************************************************************************
  * Features / Components essentials                                           *
  *                                                                            *
@@ -313,8 +354,10 @@ user_pref("extensions.blocklist.enabled", true);
 
 // Tracking protection
 // ref: https://wiki.mozilla.org/Polaris#Tracking_protection,
-// https://support.mozilla.org/en-US/kb/tracking-protection-firefox
+// https://support.mozilla.org/en-US/kb/tracking-protection-firefox,
+// https://support.mozilla.org/en-US/kb/tracking-protection-pbm
 user_pref("privacy.trackingprotection.enabled", true);
+user_pref("privacy.trackingprotection.pbmode.enabled", true);
 
 // Health report
 // Disable this; see Telemetry note for why I do not send data to Mozilla
@@ -322,6 +365,9 @@ user_pref("privacy.trackingprotection.enabled", true);
 user_pref("datareporting.healthreport.uploadEnabled", false);
 // Disable collection of the data (healthreport.sqlite* files)
 user_pref("datareporting.healthreport.service.enabled", false);
+// Also flip the "master kill switch" on data uploads
+// ref: https://gecko.readthedocs.org/en/latest/toolkit/components/telemetry/telemetry/preferences.html
+user_pref("datareporting.policy.dataSubmissionEnabled", false);
 
 // Disable heartbeat (another Firefox feedback mechanism)
 // ref: https://wiki.mozilla.org/Advocacy/heartbeat
@@ -339,10 +385,11 @@ user_pref("browser.safebrowsing.enabled", true);
 user_pref("browser.safebrowsing.malware.enabled", true);
 // However, the default with respect to downloads makes no sense
 // on Linux, downloading crapware is almost impossible especially with my usage
-// pattern
+// pattern, and in general education is key, the band-aid is not that great
+// and lies at the whims of Google
 // Furthermore, safe browsing stuff leaks information to Google
 // ref: https://www.mozilla.org/en-US/firefox/39.0/releasenotes/
-user_pref("browser.safebrowsing.downloads.enabled", false);
+user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 
 // Remove universally loathed Pocket integration
 // ref: https://support.mozilla.org/en-US/kb/save-web-pages-later-pocket-firefox
@@ -372,8 +419,28 @@ user_pref("extensions.pocket.enabled", false);
 // Comment if you want to send this stuff and help Mozilla
 // ref: https://wiki.mozilla.org/Platform/Features/Telemetry,
 // https://www.mozilla.org/en-US/legal/privacy/firefox.html#telemetry,
-// https://wiki.mozilla.org/Security/Reviews/Firefox6/ReviewNotes/telemetry
+// https://wiki.mozilla.org/Security/Reviews/Firefox6/ReviewNotes/telemetry,
+// https://gecko.readthedocs.org/en/latest/toolkit/components/telemetry/telemetry/preferences.html,
+// https://wiki.mozilla.org/Telemetry/Experiments
 user_pref("toolkit.telemetry.enabled", false);
+user_pref("toolkit.telemetry.unified", false);
+user_pref("experiments.supported", false);
+user_pref("experiments.enabled", false);
+
+// Disable remote debugging
+// WebIDE
+// ref: https://trac.torproject.org/projects/tor/ticket/16222
+user_pref("devtools.webide.enabled", false);
+user_pref("devtools.webide.autoinstallADBHelper", false);
+user_pref("devtools.webide.autoinstallFxdtAdapters", false);
+// general remote debugging
+// ref: https://developer.mozilla.org/docs/Tools/Remote_Debugging/Debugging_Firefox_Desktop#Enable_remote_debugging,
+// https://developer.mozilla.org/en-US/docs/Tools/Tools_Toolbox#Advanced_settings
+user_pref("devtools.debugger.remote-enabled", false);
+// "to use developer tools in the context of the browser itself, and not only web content"
+user_pref("devtools.chrome.enabled", false);
+// ref: https://developer.mozilla.org/en-US/docs/Tools/Remote_Debugging/Debugging_Firefox_Desktop#Firefox_37_onwards
+user_pref("devtools.debugger.force-local", true);
 
 // Firefox tiles on new tab
 // This one is tricky; I am generally ok with this
@@ -384,12 +451,15 @@ user_pref("toolkit.telemetry.enabled", false);
 // ref: http://www.thewindowsclub.com/disable-remove-ad-tiles-from-firefox,
 // http://forums.mozillazine.org/viewtopic.php?p=13876331#p13876331,
 // https://wiki.mozilla.org/Tiles/Technical_Documentation#Ping,
-// https://support.mozilla.org/en-US/kb/new-tab-page-show-hide-and-customize-top-sites#w_how-do-i-turn-the-new-tab-page-off
+// https://support.mozilla.org/en-US/kb/new-tab-page-show-hide-and-customize-top-sites#w_how-do-i-turn-the-new-tab-page-off,
+// https://gecko.readthedocs.org/en/latest/browser/browser/DirectoryLinksProvider.html#browser-newtabpage-directory-ping,
+// https://gecko.readthedocs.org/en/latest/browser/browser/DirectoryLinksProvider.html#browser-newtabpage-directory-source
 user_pref("browser.newtabpage.enhanced", false);
 user_pref("browser.newtabpage.enabled", false);
 user_pref("browser.newtab.url", "about:blank");
 user_pref("browser.newtab.preload", false);
 user_pref("browser.newtabpage.directory.ping", "");
+user_pref("browser.newtabpage.directory.source", "data:text/plain,{}");
 
 /******************************************************************************
  * Automatic connections essentials                                           *
@@ -431,6 +501,11 @@ user_pref("network.prefetch-next", false);
 // https://www.usenix.org/legacy/event/leet10/tech/full_papers/Krishnan.pdf
 user_pref("network.dns.disablePrefetch", true);
 
+// Block dot onion DNS stuff
+// this is already being done, we force it
+// ref: https://bugzilla.mozilla.org/show_bug.cgi?id=1228457
+user_pref("network.dns.blockDotOnion", true);
+
 // Speculative pre-connections
 // Yet another prefetch mechanism that we disable
 // Note that HTTP/2 obviates most of the purported benefits of this, so it is
@@ -449,6 +524,8 @@ user_pref("network.predictor.enabled", false);
 // or no persistent history type of scenario
 // ref: http://kb.mozillazine.org/Browser.search.suggest.enabled
 user_pref("browser.search.suggest.enabled", false);
+// Force disable showing search suggestions in location bar
+user_pref("browser.urlbar.suggest.searches", false);
 
 // SSDP
 // This is a device protocol (think ffmpeg libavdevice) for e.g streaming video
@@ -558,7 +635,8 @@ user_pref("network.http.sendSecureXSiteReferrer", false);
 user_pref("browser.cache.offline.enable", false);
 
 // Clear history on close (most things cleared by default, but we lock them).
-// However, I prefer letting Firefox manage passwords.
+// For passwords, I use a separate password managaer - a separate password
+// manager is anyway useful for offline stuff, and sufficient for browsing as well
 // ref: https://support.mozilla.org/en-US/kb/Clear%20Recent%20History#w_how-do-i-make-firefox-clear-my-history-automatically
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 user_pref("privacy.clearOnShutdown.cache", true);
@@ -567,7 +645,7 @@ user_pref("privacy.clearOnShutdown.downloads", true);
 user_pref("privacy.clearOnShutdown.formdata", true);
 user_pref("privacy.clearOnShutdown.history", true);
 user_pref("privacy.clearOnShutdown.offlineApps", true);
-//user_pref("privacy.clearOnShutdown.passwords", true);
+user_pref("privacy.clearOnShutdown.passwords", true);
 user_pref("privacy.clearOnShutdown.sessions", true);
 user_pref("privacy.clearOnShutdown.siteSettings", true);
 // Don't remember browsing history.
@@ -584,6 +662,14 @@ user_pref("network.cookie.lifetimePolicy", 2);
 // ref: CIS Version 1.2.0 October 21st, 2011 2.5.8 Disable Caching of SSL Pages,
 // http://kb.mozillazine.org/Browser.cache.disk_cache_ssl
 user_pref("browser.cache.disk_cache_ssl", false);
+
+// Page thumbnail generation
+// We already prevent page thumbnail display; force the prevention of capture
+// apparently Firefox has prefs not exposed in about:config, and this is one
+// of them (TODO: verify)?
+// ref: https://developer.mozilla.org/en-US/docs/Mozilla/Preferences/Preference_reference/browser.pagethumbnails.capturing_disabled,
+// https://support.mozilla.org/en-US/questions/973320
+user_pref("browser.pagethumbnails.capturing_disabled", true);
 
 /******************************************************************************
  * Caching ambiguities (least to most)                                           *
@@ -618,10 +704,9 @@ user_pref("browser.formfill.enable", false);
 user_pref("browser.formfill.expire_days", 0);
 
 // Remember signons
-// I prefer letting Firefox manage my passwords,
-// but am all ears for an alternative.
+// I use a password manager for this
 // ref: CIS Version 1.2.0 October 21st, 2011 2.5.2 Disallow Credential Storage
-// user_pref("signon.rememberSignons", false);
+user_pref("signon.rememberSignons", false);
 
 /******************************************************************************
  * UI essentials                                                            *
@@ -705,8 +790,8 @@ user_pref("browser.download.useDownloadDir", true);
 // Always keep Firefox as a default: in spite of all its flaws, Firefox based
 // browsers are the best of the lot.
 // For instance, all the "hardcore" browsers like Iceweasel, IceCat, and the
-// Tor browser are based off a Firefox codebase
-// Seems like many like to keep this off, so I will do that as well here.
+// Tor browser are based off a Firefox codebase.
+// However, no need to waste cycles actually doing the check each time.
 user_pref("browser.shell.checkDefaultBrowser", false);
 
 // Autocomplete
