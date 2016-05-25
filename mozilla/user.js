@@ -817,7 +817,12 @@ user_pref("browser.urlbar.maxRichResults", 0);
 // and Firefox is no exception.
 // As such, only noted for things not already set as defaults on the latest
 // Firefox release, i.e we do not "force defaults".
-// FIXME: complete the cipher stuff
+
+// NOTE: Ciphers are not addressed. They typically generate the most amount of
+// press anyway, and Firefox typically does a reasonable job. I am also a bit
+// skeptical of the refusal of 128 bit suites in pyllyukko/user.js, there
+// are many experts who think it is fine for now; though perhaps not in a post
+// quantum world.
 
 /******************************************************************************
  * TLS / HTTPS / OCSP essentials                                              *
@@ -865,17 +870,3 @@ user_pref("security.cert_pinning.enforcement_level", 2);
 // ref: https://wiki.mozilla.org/Security:Renegotiation#security.ssl.require_safe_negotiation,
 // CVE-2009-3555
 // user_pref("security.ssl.require_safe_negotiation", true);
-
-/******************************************************************************
- * Ciphers essentials                                                         *
- *                                                                            *
- ******************************************************************************/
-
-// See above FIXME
-
-/******************************************************************************
- * Ciphers  ambiguities (least to most)                                       *
- *                                                                            *
- ******************************************************************************/
-
-// See above FIXME
