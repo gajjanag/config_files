@@ -625,7 +625,7 @@ user_pref("network.http.sendSecureXSiteReferrer", false);
 // user_pref("general.useragent.override", "Mozilla/5.0 (Android; Linux armv7l; rv:9.0) Gecko/20111216 Firefox/9.0 Fennec/9.0");
 
 /******************************************************************************
- * Caching essentials                                                            *
+ * Caching essentials                                                         *
  *                                                                            *
  ******************************************************************************/
 
@@ -672,7 +672,7 @@ user_pref("browser.cache.disk_cache_ssl", false);
 user_pref("browser.pagethumbnails.capturing_disabled", true);
 
 /******************************************************************************
- * Caching ambiguities (least to most)                                           *
+ * Caching ambiguities (least to most)                                        *
  *                                                                            *
  ******************************************************************************/
 
@@ -709,7 +709,7 @@ user_pref("browser.formfill.expire_days", 0);
 user_pref("signon.rememberSignons", false);
 
 /******************************************************************************
- * UI essentials                                                            *
+ * UI essentials                                                              *
  *                                                                            *
  ******************************************************************************/
 
@@ -754,7 +754,7 @@ user_pref("layout.css.visited_links_enabled", false);
 user_pref("security.ssl.warn_missing_rfc5746", 1);
 
 /******************************************************************************
- * UI ambiguities (least to most)                                           *
+ * UI ambiguities (least to most)                                             *
  *                                                                            *
  ******************************************************************************/
 
@@ -820,28 +820,28 @@ user_pref("browser.urlbar.maxRichResults", 0);
 // FIXME: revisit this if needed.
 
 /******************************************************************************
- * TLS / HTTPS / OCSP essentials                                                            *
+ * TLS / HTTPS / OCSP essentials                                              *
  *                                                                            *
  ******************************************************************************/
 
 // See above FIXME
 
 /******************************************************************************
- * TLS / HTTPS / OCSP  ambiguities (least to most)                                           *
+ * TLS / HTTPS / OCSP  ambiguities (least to most)                            *
  *                                                                            *
  ******************************************************************************/
 
 // See above FIXME
 
 /******************************************************************************
- * Ciphers essentials                                                            *
+ * Ciphers essentials                                                         *
  *                                                                            *
  ******************************************************************************/
 
 // See above FIXME
 
 /******************************************************************************
- * Ciphers  ambiguities (least to most)                                           *
+ * Ciphers  ambiguities (least to most)                                       *
  *                                                                            *
  ******************************************************************************/
 
