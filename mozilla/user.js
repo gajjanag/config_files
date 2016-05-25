@@ -808,30 +808,63 @@ user_pref("browser.urlbar.autocomplete.enabled", false);
 // http://kb.mozillazine.org/Browser.urlbar.maxRichResults
 user_pref("browser.urlbar.maxRichResults", 0);
 
-// Currently view as at being too low a level and too frequently updated
-// to be sustainable
+// Very low level stuff generally handled well by Firefox.
 // This sort of stuff is "the easy side" of crypto, and generally responsible
-// projects (hoping Firefox is such) handle these things appropriately
-// Furthermore, practical attacks rarely target low level crupto primitives,
+// projects (hoping Firefox is such) handle these things appropriately.
+// Furthermore, practical attacks rarely target low level crypto primitives,
 // and due to above they generate high publicity, leading to rapid patches.
 // The "hard side" involving user interaction is where most projects fail,
 // and Firefox is no exception.
-// For now, do not impose anything.
-// FIXME: revisit this if needed.
+// As such, only noted for things not already set as defaults on the latest
+// Firefox release, i.e we do not "force defaults".
+// FIXME: complete the cipher stuff
 
 /******************************************************************************
  * TLS / HTTPS / OCSP essentials                                              *
  *                                                                            *
  ******************************************************************************/
 
-// See above FIXME
+// SHA-1 certificates
+// SHA-1 certificates are weak, and it has been known for ages. Firefox seems to
+// push this to 2017. We take a more proactive stance here and kill them
+// entirely, i.e treat as an untrusted connection.
+// ref: https://bugzilla.mozilla.org/show_bug.cgi?id=942515#c32,
+// https://blog.qualys.com/ssllabs/2014/09/09/sha1-deprecation-what-you-need-to-know
+user_pref("security.pki.sha1_enforcement_level", 2);
+
+// Treat unsafe SSL negotiation as broken. The indicator is useless as protection,
+// but helps raise awareness of servers that need upgrading.
+// Going further with this makes browsing nearly impossible, the web is that
+// broken, see the ambiguities require_safe_negotiation.
+// ref: https://wiki.mozilla.org/Security:Renegotiation#security.ssl.treat_unsafe_negotiation_as_broken,
+// CVE-2009-3555
+user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 
 /******************************************************************************
  * TLS / HTTPS / OCSP  ambiguities (least to most)                            *
  *                                                                            *
  ******************************************************************************/
 
-// See above FIXME
+// OCSP
+// Forcing revocation check via OCSP may not be a great idea, as it leaks
+// information about sites visited to the CA. OCSP stapling is a reasonable
+// alternative. Change if desired.
+// ref: https://blog.mozilla.org/security/2013/07/29/ocsp-stapling-in-firefox/
+// user_pref("security.OCSP.require", true);
+
+// Certificate pinning
+// The default, which allows user MITM (pinning not enforced if the trust anchor
+// is a user inserted CA) seems mostly fine. I have not yet had site breakage
+// for a strict level, so why not set it higher and always force pinning.
+// ref: https://wiki.mozilla.org/SecurityEngineering/Public_Key_Pinning#How_to_use_pinning
+user_pref("security.cert_pinning.enforcement_level", 2);
+
+// Safe SSL negotiation
+// this makes browsing next to impossible=) (13.2.2012)
+// update: the world is not ready for this! (6.5.2014)
+// ref: https://wiki.mozilla.org/Security:Renegotiation#security.ssl.require_safe_negotiation,
+// CVE-2009-3555
+// user_pref("security.ssl.require_safe_negotiation", true);
 
 /******************************************************************************
  * Ciphers essentials                                                         *
