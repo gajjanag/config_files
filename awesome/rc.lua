@@ -111,25 +111,10 @@ markup = lain.util.markup
 
 -- Textclock
 mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
+mytextclockbg = wibox.widget.background(mytextclock, "#313131")
 
 -- calendar
 lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
-
--- MEM
-memicon = wibox.widget.imagebox(beautiful.widget_mem)
-memwidget = lain.widgets.mem({
-    settings = function()
-        widget:set_text(" " .. mem_now.used .. "MB ")
-    end
-})
-
--- CPU
-cpuicon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_cpu), "#313131")
-cpuwidget = wibox.widget.background(lain.widgets.cpu({
-    settings = function()
-        widget:set_text(" " .. cpu_now.usage .. "% ")
-    end
-}), "#313131")
 
 -- Battery
 baticon = wibox.widget.imagebox(beautiful.widget_battery)
@@ -149,17 +134,6 @@ batwidget = lain.widgets.bat({
     ac = "ACAD",
     battery = "BAT1",
 })
-
--- Net
-neticon = wibox.widget.background(wibox.widget.imagebox(beautiful.widget_net), "#313131")
-neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
-netwidget = wibox.widget.background(lain.widgets.net({
-    settings = function()
-        widget:set_markup(markup("#7AC82E", " " .. net_now.received)
-                          .. " " ..
-                          markup("#46A8C3", " " .. net_now.sent .. " "))
-    end
-}), "#313131")
 
 -- Weather
 cambridge_id  = 6254926
@@ -270,25 +244,14 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(spr)
-    right_layout:add(arrl)
     right_layout:add(arrl_ld)
     right_layout:add(myweatherbg)
     right_layout:add(myweathericonbg)
     right_layout:add(arrl_dl)
-    right_layout:add(memicon)
-    right_layout:add(memwidget)
-    right_layout:add(arrl_ld)
-    right_layout:add(cpuicon)
-    right_layout:add(cpuwidget)
-    right_layout:add(arrl_dl)
     right_layout:add(baticon)
     right_layout:add(batwidget)
     right_layout:add(arrl_ld)
-    right_layout:add(neticon)
-    right_layout:add(netwidget)
-    right_layout:add(arrl_dl)
-    right_layout:add(mytextclock)
-    right_layout:add(arrl_ld)
+    right_layout:add(mytextclockbg)
     right_layout:add(mylayoutboxbg[s])
 
     -- Now bring it all together (with the tasklist in the middle)
