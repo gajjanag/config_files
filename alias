@@ -57,7 +57,8 @@ courses \
 dev \
 ganesh \
 research \
-doc"
+doc \
+music"
 src_loc="/home/$user_name"
 backup_loc=$user_name@athena.dialup.mit.edu:Private
 local_dirs=""
