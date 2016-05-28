@@ -150,7 +150,7 @@ myweather = lain.widgets.weather({
         end
         wind_dir = "N/A"
         if weather_now["wind"]["deg"] then
-            wind_speed = math.floor(weather_now["wind"]["deg"])
+            wind_dir = math.floor(weather_now["wind"]["deg"])
         end
         widget:set_markup(weather_desc .. " @ " .. temp .. "°F, " .. wind_speed .. "mph " .. wind_dir .. "° ")
     end
