@@ -1,5 +1,6 @@
 [Unit]
 Description=Update pacman mirrorlist weekly
+After=network.target
 
 [Timer]
 OnCalendar=weekly
