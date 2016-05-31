@@ -28,10 +28,17 @@ CPU_SCALING_GOVERNOR_ON_BAT=powersave
 # tlp-stat output, Section "+++ Processor".
 # Hint: Parameters are disabled by default, remove the leading # to enable them,
 #       otherwise kernel default values are used.
-#CPU_SCALING_MIN_FREQ_ON_AC=0
-#CPU_SCALING_MAX_FREQ_ON_AC=0
-#CPU_SCALING_MIN_FREQ_ON_BAT=0
-#CPU_SCALING_MAX_FREQ_ON_BAT=0
+# NOTE: in theory one should let the kernel decide these things for optimal
+# performance. In particular, the idea is that by e.g clocking high during
+# wakeup, the task is completed faster and one can thus go to the low power
+# state faster and spend more time in it. In practice, I have not found any
+# evidence suggesting it.
+# As such, we change these values here. Look up the values for your processor
+# via sudo tlp-stat.
+CPU_SCALING_MIN_FREQ_ON_AC=800000
+CPU_SCALING_MAX_FREQ_ON_AC=3400000
+CPU_SCALING_MIN_FREQ_ON_BAT=800000
+CPU_SCALING_MAX_FREQ_ON_BAT=800000
 
 # Set the cpu "turbo boost" feature: 0=disable / 1=allow
 # Requires an Intel Core i processor and kernel 3.7 or later.
