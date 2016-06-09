@@ -129,7 +129,7 @@ batwidget = lain.widgets.bat({
         else
             baticon:set_image(beautiful.widget_battery)
         end
-        widget:set_markup(" " .. bat_now.perc .. "% ")
+        widget:set_markup(" " .. bat_now.perc .. "% " .. bat_now.time)
     end,
     ac = "ACAD",
     battery = "BAT1",
