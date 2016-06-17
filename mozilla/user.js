@@ -246,6 +246,14 @@ user_pref("browser.search.order.3", "Google");
 // https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2712
 user_pref("javascript.options.asmjs", false);
 
+// wasm
+// Web Assembly - yet another thing like asm.js, except that Firefox, Google, and
+// Microsoft have teamed up together
+// Same points apply as with asm.js, only thing is that it is much newer and
+// still under active development
+// ref: https://en.wikipedia.org/wiki/WebAssembly
+user_pref("javascript.options.wasm", false);
+
 // SVG files
 // SVG are essentially XML style markup that supports vector graphics
 // Great format, but as usual browsers mess this up by allowing embedded JS in
