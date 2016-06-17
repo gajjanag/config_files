@@ -24,6 +24,7 @@ This is meant to be used with the [lain-git](https://aur.archlinux.org/packages/
 * juliarc.jl: [Julia](https://julialang.org) settings.
 * ctags: [ctags](https://en.wikipedia.org/wiki/Ctags) settings.
 * ccache.conf: configuration for [ccache](https://ccache.samba.org), a very useful compilation cache speeding up builds on large projects.
+* 30-touchpad.conf: configuration for touchpad, just to get tapping to work with recent libinput. See [libinput](https://wiki.archlinux.org/index.php/Libinput). Arch people claim it is an upstream design decision; I really don't care - it worked before, and it is ridiculous to break such things forcing end user configuration. Not the fault of Arch, just some silly upstream stuff.
 * qpdfview: configuration for [qpdfview](https://launchpad.net/qpdfview), a very elegant, simple qt/poppler based tabbed pdf/djvu/ps viewer.
 * makepkg.old: < 4.2 version of [makepkg](https://wiki.archlinux.org/index.php/Makepkg). 4.2 removed --asroot. In general, the idea is good, but it is a PITA to do automated installation of systems via scripting if one relies heavily on the AUR. I use it only temporarily until we get the base scaffold of the system up.
 * lxterminal: configuration for [lxterminal](https://github.com/lxde/lxterminal), a lightweight, tabbed terminal emulator from the [lxde](http://lxde.org) project.
