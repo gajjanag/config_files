@@ -1,0 +1,6 @@
+[Unit]
+Description=Block Facebook's IP range
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/block_fb.sh

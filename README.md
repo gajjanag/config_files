@@ -29,3 +29,4 @@ This is meant to be used with the [lain-git](https://aur.archlinux.org/packages/
 * makepkg.old: < 4.2 version of [makepkg](https://wiki.archlinux.org/index.php/Makepkg). 4.2 removed --asroot. In general, the idea is good, but it is a PITA to do automated installation of systems via scripting if one relies heavily on the AUR. I use it only temporarily until we get the base scaffold of the system up.
 * lxterminal: configuration for [lxterminal](https://github.com/lxde/lxterminal), a lightweight, tabbed terminal emulator from the [lxde](http://lxde.org) project.
 * powertop.service: Uses [powertop](https://01.org/powertop), and this systemd service file automatically auto-tunes parameters on boot.
+* block_fb.sh: Blocks Facebook's entire IP address range, based off https://news.ycombinator.com/item?id=11791052.
