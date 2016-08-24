@@ -220,8 +220,10 @@ user_pref("clipboard.autocopy", false);
 
 // Proxy settings
 // By default, in Linux Firefox uses the system proxy settings
+// We force a direct connection
 // ref: http://kb.mozillazine.org/Network.proxy.type
-// user_pref("network.proxy.type", 0);
+// https://news.ycombinator.com/item?id=12167209
+user_pref("network.proxy.type", 0);
 
 // Default search engine
 // I use duckduckgo as it is reasonably complete and the least invasive as far
