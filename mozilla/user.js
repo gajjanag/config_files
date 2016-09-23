@@ -706,6 +706,11 @@ user_pref("browser.cache.disk.enable", false);
 // http://kb.mozillazine.org/Browser.sessionstore.privacy_level#2
 // note: CIS says 1, we use 2
 user_pref("browser.sessionstore.privacy_level", 2);
+// Remove the session store entirely.
+// ref: https://news.ycombinator.com/item?id=12565023,
+// http://kb.mozillazine.org/Browser.sessionstore.enabled
+user_pref("browser.sessionstore.max_tabs_undo", 0);
+user_pref("browser.sessionstore.max_windows_undo", 0);
 
 // Form fill
 // Do not allow Firefox to remember forms
