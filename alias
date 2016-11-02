@@ -16,6 +16,7 @@ alias shutdown='systemctl poweroff'
 alias suspend='systemctl suspend'
 alias setclip='xclip -selection c'
 alias getclip='xclip -selection clipboard -o'
+alias chromium='chromium -incognito'
 # }}}
 
 ## New commands ## {{{
