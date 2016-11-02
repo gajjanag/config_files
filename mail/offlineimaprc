@@ -1,0 +1,9 @@
+[general]
+ui = TTY.TTYUI
+accounts = gajjanag
+pythonfile = ~/.dotfiles/mail/offlineimap.py
+fsync = False
+
+[Account gajjanag]
+localrepository = gajjanag-local
+
