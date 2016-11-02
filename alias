@@ -14,8 +14,6 @@ alias mutt='cd ~/Downloads && mutt'
 alias reboot='systemctl reboot'
 alias shutdown='systemctl poweroff'
 alias suspend='systemctl suspend'
-alias setclip='xclip -selection c'
-alias getclip='xclip -selection clipboard -o'
 alias chromium='chromium -incognito'
 # }}}
 
@@ -26,6 +24,8 @@ alias openports='ss --all --numeric --processes --ipv4 --ipv6'
 alias pgg='ps -Af | grep'           # requires an argument
 alias ..='cd ..'
 alias stop='kill -TSTP'
+alias setclip='xclip -selection c'
+alias getclip='xclip -selection clipboard -o'
 # }}}
 
 ## Custom commands ## {{{
