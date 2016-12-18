@@ -791,6 +791,11 @@ user_pref("layout.css.visited_links_enabled", false);
  *                                                                            *
  ******************************************************************************/
 
+// Disable the UITour backend so that there is no chance that a remote page
+// can use it to confuse Tor Browser users
+// ref: https://bedrock.readthedocs.io/en/latest/uitour.html
+user_pref("browser.uitour.enabled", false);
+
 // Disable modification of right-click menu
 // This is made ambiguous as I am certainly cautious enough to not fall into
 // silly traps like this
