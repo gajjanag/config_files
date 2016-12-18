@@ -775,13 +775,6 @@ user_pref("network.IDN_show_punycode", true);
 // http://dbaron.org/mozilla/visited-privacy
 user_pref("layout.css.visited_links_enabled", false);
 
-// Incomplete SSL
-// Warn about SSL that does not implement RFC 5746
-// This is the default in Firefox, we force it to make sure
-// ref: https://developer.mozilla.org/en/Preferences/Mozilla_preferences_for_uber-geeks
-// see also CVE-2009-3555
-user_pref("security.ssl.warn_missing_rfc5746", 1);
-
 /******************************************************************************
  * UI ambiguities (least to most)                                             *
  *                                                                            *
