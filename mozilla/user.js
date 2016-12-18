@@ -381,6 +381,14 @@ user_pref("pdfjs.disabled", true);
 user_pref("privacy.trackingprotection.enabled", true);
 user_pref("privacy.trackingprotection.pbmode.enabled", true);
 
+// Resist fingerprinting via window.screen and CSS media queries and other
+// techniques
+// Great stuff by Mozilla (though not yet integrated into single pref)!
+// ref: https://bugzil.la/418986,
+// https://bugzil.la/1281949,
+// https://bugzil.la/1281963
+user_pref("privacy.resistFingerprinting", true);
+
 // Health report
 // Disable this; see Telemetry note for why I do not send data to Mozilla
 // ref: https://support.mozilla.org/en-US/kb/firefox-health-report-understand-your-browser-perf
