@@ -184,6 +184,9 @@ user_pref("loop.logDomains", false);
 // ref: https://trac.torproject.org/projects/tor/wiki/doc/TorifyHOWTO/WebBrowsers
 user_pref("network.proxy.socks_remote_dns", true);
 
+// Do not monitor the connection state of users
+user_pref("network.manage-offline-status", false);
+
 // Scripting of Plugins by Javascript
 // This opens a whole can of worms and is similar to the universally hated
 // ActiveX of IE
