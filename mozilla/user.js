@@ -844,14 +844,6 @@ user_pref("browser.urlbar.maxRichResults", 0);
  *                                                                            *
  ******************************************************************************/
 
-// SHA-1 certificates
-// SHA-1 certificates are weak, and it has been known for ages. Firefox seems to
-// push this to 2017. We take a more proactive stance here and kill them
-// entirely, i.e treat as an untrusted connection.
-// ref: https://bugzilla.mozilla.org/show_bug.cgi?id=942515#c32,
-// https://blog.qualys.com/ssllabs/2014/09/09/sha1-deprecation-what-you-need-to-know
-user_pref("security.pki.sha1_enforcement_level", 2);
-
 // Treat unsafe SSL negotiation as broken. The indicator is useless as protection,
 // but helps raise awareness of servers that need upgrading.
 // Going further with this makes browsing nearly impossible, the web is that
@@ -878,6 +870,10 @@ user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 // for a strict level, so why not set it higher and always force pinning.
 // ref: https://wiki.mozilla.org/SecurityEngineering/Public_Key_Pinning#How_to_use_pinning
 user_pref("security.cert_pinning.enforcement_level", 2);
+
+// disallow SHA-1
+// ref: https://bugzilla.mozilla.org/show_bug.cgi?id=1302140
+user_pref("security.pki.sha1_enforcement_level", 1);
 
 // Safe SSL negotiation
 // this makes browsing next to impossible=) (13.2.2012)
