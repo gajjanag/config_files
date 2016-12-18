@@ -114,6 +114,12 @@ user_pref("media.getusermedia.screensharing.enabled", false);
  *                                                                            *
  ******************************************************************************/
 
+// Disable dom.mozTCPSocket.enabled (raw TCP socket support)
+// ref: https://trac.torproject.org/projects/tor/ticket/18863,
+// https://www.mozilla.org/en-US/security/advisories/mfsa2015-97/,
+// https://developer.mozilla.org/docs/Mozilla/B2G_OS/API/TCPSocket
+user_pref("dom.mozTCPSocket.enabled", false);
+
 // IndexedDB API for offline storage - unnecessary offline storage should be
 // disabled
 // ref: https://developer.mozilla.org/en-US/docs/IndexedDB,
