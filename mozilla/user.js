@@ -617,8 +617,6 @@ user_pref("noscript.doNotTrack.enabled", false);
 // user_pref("network.http.sendRefererHeader", 1);
 // Send a referer header with the target URI as the source, thus spoofing it
 user_pref("network.http.referer.spoofSource", true);
-// CIS Version 1.2.0 October 21st, 2011 2.4.3 Disable Referer from an SSL Website
-user_pref("network.http.sendSecureXSiteReferrer", false);
 
 // User agent spoofing
 // This is very useful especially for Linux users, since the user agent
