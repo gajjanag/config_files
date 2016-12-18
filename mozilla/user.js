@@ -120,6 +120,13 @@ user_pref("media.getusermedia.screensharing.enabled", false);
 // https://developer.mozilla.org/docs/Mozilla/B2G_OS/API/TCPSocket
 user_pref("dom.mozTCPSocket.enabled", false);
 
+// Disable Web Audio API
+// Basically, fingerprinting is done via testing FFT execution speed (among
+// other things)
+// not a widely used API, and certainly is not essential for browsing
+// ref: https://bugzil.la/1288359
+user_pref("dom.webaudio.enabled", false);
+
 // IndexedDB API for offline storage - unnecessary offline storage should be
 // disabled
 // ref: https://developer.mozilla.org/en-US/docs/IndexedDB,
@@ -156,6 +163,9 @@ user_pref("dom.telephony.enabled", false);
 // have been no addressals of the IP address leakage.
 // As such, completely shutdown WebRTC stuff.
 user_pref("media.peerconnection.ice.default_address_only", true);
+// add another pref for Firefox > 51
+// ref: https://bugzilla.mozilla.org/show_bug.cgi?id=1304600
+user_pref("media.peerconnection.ice.no_host", true);
 user_pref("media.peerconnection.enabled", false);
 user_pref("loop.logDomains", false);
 
