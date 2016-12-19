@@ -647,17 +647,15 @@ user_pref("network.http.referer.spoofSource", true);
 
 // User agent spoofing
 // This is very useful especially for Linux users, since the user agent
-// reveals many bits of information (9+ as per panopticlick). Hence, we spoof
-// ourselves to be like Windows running Firefox. If you want to take this further,
-// you could spoof the browser to be the most popular one, namely Safari/Mac.
-// However, this may lead to breakage.
-// Of course, feature detection via JavaScript may be done to fingerprint.
-// Nevertheless, most of the time I run JScript disabled, so I find this
-// an acceptible tradeoff.
-// Furthermore, it is needed for the web version of TurboTax.
-// ref: https://github.com/gorhill/uMatrix/wiki/Latest-user-agent-strings
-// user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0");
-// user_pref("general.useragent.override", "Mozilla/5.0 (Android; Linux armv7l; rv:9.0) Gecko/20111216 Firefox/9.0 Fennec/9.0");
+// reveals many bits of information (9+ as per panopticlick).
+// Here, we may spoof ourselves to behave like the Tor browser, which should have
+// a number of other users.
+// This tip is taken from the Arch wiki: https://wiki.archlinux.org/index.php/Firefox/Privacy#Change_user_agent_and_platform.
+// For an alternative approach that we prefer, one can randomize among popular platforms,
+// see e.g Random Agent Spoofer add on for Firefox.
+// As such, below are commented, uncomment to set to Tor's values.
+// user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:38.0) Gecko/20100101 Firefox/38.0");
+// user_pref("general.platform.override", "Win32");
 
 /******************************************************************************
  * Caching essentials                                                         *
