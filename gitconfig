@@ -19,11 +19,12 @@
 	defaults = simple
 	default = simple
 [sendemail]
-	smtpuser = gajjanag@gmail.com
-	smtpserver = smtp.gmail.com
-	smtpencryption = tls
-	smtpserverport = 587
+	smtpuser = gajjanag@yandex.com
+	smtpserver = smtp.yandex.com
+	smtpencryption = ssl
+	smtpserverport = 465
 	to = ffmpeg-devel@ffmpeg.org
+	from = gajjanag@yandex.com
 [color "diff"]
 	whitespace = red reverse
 [diff]
