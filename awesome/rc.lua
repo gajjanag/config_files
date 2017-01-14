@@ -112,9 +112,9 @@ batwidget = lain.widgets.bat({
     settings = function()
         if bat_now.status ~= "Discharging" then
             baticon:set_image(beautiful.widget_ac)
-        elseif tonumber(bat_now.perc) <= 5 then
+        elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
             baticon:set_image(beautiful.widget_battery_empty)
-        elseif tonumber(bat_now.perc) <= 15 then
+        elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
             baticon:set_image(beautiful.widget_battery_low)
         else
             baticon:set_image(beautiful.widget_battery)
