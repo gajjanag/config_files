@@ -126,8 +126,10 @@ batwidget = lain.widgets.bat({
 })
 
 -- Weather
-cambridge_id  = 6254926
-union_city_id = 5404554
+cambridge_id    = 6254926
+union_city_id   = 5404554
+bangalore_id    = 1277333
+puttur_id       = 1259124
 myweather = lain.widgets.weather({
     city_id = cambridge_id,
     units = "imperial",
