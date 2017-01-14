@@ -11,6 +11,8 @@ At one point, I was using [vim-youcompleteme-git](https://aur.archlinux.org/pack
 * mozilla: Firefox customization via the [user.js/mozilla.cfg method](https://wiki.archlinux.org/index.php/Firefox). This is heavily based off [pyllyukko/user.js](https://github.com/pyllyukko/user.js), with minor tweaks. Please note that this is not frequently updated as Firefox is too fast moving, and evolves based on my web needs. It is sufficiently different in structure that I do not simply maintain a fork of this repo.
 * awesome: Awesome tiling WM customization (trimmed and modified from powerarrow-darker theme of [awesome-copycats](https://github.com/copycat-killer/awesome-copycats)).
 This is meant to be used with the [lain-git](https://aur.archlinux.org/packages/lain-git) package for various widgets.
+WARNING: This is meant to be used with Awesome 3.5, and has not been ported to 4.0 yet!
+In particular, lain should be checked out to commit 301faf5 or earlier.
 * alias: custom aliases, most from [aliases](https://gist.github.com/anonymous/a9055e30f97bd19645c2).
 * gitconfig: global git configuration
 * tlp: a very useful (especially for laptops) advanced power management utility. See the [Arch wiki](https://wiki.archlinux.org/index.php/TLP), and the [project page](http://linrunner.de/en/tlp/tlp.html) for more information.
