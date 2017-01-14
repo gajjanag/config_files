@@ -92,10 +92,6 @@ if beautiful.wallpaper then
 end
 -- }}}
 
--- {{{ Menu
-mymainmenu = awful.menu.new({ items = require("menugen").build_menu(), theme = { height = 16, width = 130 }})
--- }}}
-
 -- {{{ Wibox
 markup = lain.util.markup
 
@@ -264,7 +260,6 @@ end
 
 -- {{{ Mouse Bindings
 root.buttons(awful.util.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -317,12 +312,6 @@ globalkeys = awful.util.table.join(
         function()
             awful.client.focus.bydirection("right")
             if client.focus then client.focus:raise() end
-        end),
-
-    -- Show Menu
-    awful.key({ modkey }, "w",
-        function ()
-            mymainmenu:show({ keygrabber = true })
         end),
 
     -- Show/Hide Wibox
