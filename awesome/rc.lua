@@ -48,7 +48,7 @@ function run_once(cmd)
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
-run_once("unclutter")
+run_once("unclutter -root")
 -- }}}
 
 -- {{{ Variable definitions
