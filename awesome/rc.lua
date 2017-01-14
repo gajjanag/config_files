@@ -63,14 +63,6 @@ terminal   = "lxterminal"
 editor     = "vim"
 editor_cmd = terminal .. " -e " .. editor
 
--- user defined
-browser    = "firefox"
-browser2   = "iron"
-gui_editor = "gvim"
-graphics   = "gimp"
-iptraf     = terminal .. " -g 180x54-20+34 -e sudo iptraf-ng -i all "
-pdf        = "qpdfview --unique"
-
 local layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
@@ -401,12 +393,6 @@ globalkeys = awful.util.table.join(
 
     -- Copy to clipboard
     awful.key({ modkey }, "c", function () os.execute("xsel -p -o | xsel -i -b") end),
-
-    -- User programs
-    awful.key({ modkey }, "q", function () awful.util.spawn(browser) end),
-    awful.key({ modkey }, "i", function () awful.util.spawn(browser2) end),
-    awful.key({ modkey }, "s", function () awful.util.spawn(gui_editor) end),
-    awful.key({ modkey }, "g", function () awful.util.spawn(graphics) end),
 
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
