@@ -77,6 +77,11 @@ athenarestore() {
     eval "rsync -av --delete $remote_dirs $src_loc"
 }
 
+# audio playback from command line
+play() {
+    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$@"
+}
+
 # Privileged access
 if [ $UID -ne 0 ]; then
     alias sudo='sudo '
