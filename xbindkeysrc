@@ -5,3 +5,11 @@
 # decrease volume
 "ponymix decrease 5"
     XF86AudioLowerVolume
+
+# increase screen brightness
+"xbacklight -inc 10"
+    XF86MonBrightnessUp
+
+# decrease screen brightness
+"xbacklight -dec 10"
+    XF86MonBrightnessDown
