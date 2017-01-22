@@ -365,14 +365,6 @@ globalkeys = awful.util.table.join(
         end),
 
     -- ALSA volume control
-    awful.key({ }, "XF86AudioRaiseVolume",
-        function ()
-            awful.util.spawn("ponymix increase 5")
-        end),
-    awful.key({ }, "XF86AudioLowerVolume",
-        function ()
-            awful.util.spawn("ponymix decrease 5")
-        end),
     awful.key({ altkey }, "m",
         function ()
             awful.util.spawn("ponymix toggle")

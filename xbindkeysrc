@@ -1,0 +1,7 @@
+# increase volume
+"ponymix increase 5"
+    XF86AudioRaiseVolume
+
+# decrease volume
+"ponymix decrease 5"
+    XF86AudioLowerVolume
