@@ -24,7 +24,7 @@ fi
 [ -f ~/.xprofile ] && source ~/.xprofile
 
 exec awesome
-# lower power consumption awesome config, uncomment below
+# lower power consumption/debug awesome config, uncomment below
 # exec awesome -c /etc/xdg/awesome/rc.lua
 
 # exec gnome-session
