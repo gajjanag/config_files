@@ -97,6 +97,10 @@ local function client_menu_toggle_fn()
 end
 -- }}}
 
+-- {{{ Wibox
+local markup = lain.util.markup
+local separators = lain.util.separators
+
 -- {{{ Wallpaper
 if beautiful.wallpaper then
     for s = 1, screen.count() do
@@ -104,9 +108,6 @@ if beautiful.wallpaper then
     end
 end
 -- }}}
-
--- {{{ Wibox
-markup = lain.util.markup
 
 -- Textclock
 mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
