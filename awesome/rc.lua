@@ -101,6 +101,11 @@ end
 local markup = lain.util.markup
 local separators = lain.util.separators
 
+-- calendar
+local mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
+local mytextclockbg = wibox.widget.background(mytextclock, "#313131")
+lain.widgets.calendar.attach(mytextclock, { font_size = 10 })
+
 -- {{{ Wallpaper
 if beautiful.wallpaper then
     for s = 1, screen.count() do
@@ -108,13 +113,6 @@ if beautiful.wallpaper then
     end
 end
 -- }}}
-
--- Textclock
-mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
-mytextclockbg = wibox.widget.background(mytextclock, "#313131")
-
--- calendar
-lain.widgets.calendar.attach(mytextclock, { font_size = 10 })
 
 -- Battery
 baticon = wibox.widget.imagebox(beautiful.widget_battery)
