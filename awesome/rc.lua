@@ -110,16 +110,20 @@ lain.widgets.calendar.attach(mytextclock, { font_size = 10 })
 local baticon = wibox.widget.imagebox(beautiful.widget_battery)
 local bat = lain.widgets.bat({
     settings = function()
-        if bat_now.status ~= "Discharging" then
-            baticon:set_image(beautiful.widget_ac)
-        elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
-            baticon:set_image(beautiful.widget_battery_empty)
-        elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
-            baticon:set_image(beautiful.widget_battery_low)
+        if bat_now.status ~= "N/A" then
+            if bat_now.status ~= "Discharging" then
+                baticon:set_image(beautiful.widget_ac)
+            elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
+                baticon:set_image(beautiful.widget_battery_empty)
+            elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
+                baticon:set_image(beautiful.widget_battery_low)
+            else
+                baticon:set_image(beautiful.widget_battery)
+            end
+            widget:set_markup(" " .. bat_now.perc .. "% " .. bat_now.time)
         else
-            baticon:set_image(beautiful.widget_battery)
+            baticon:set_image(beautiful.widget_ac)
         end
-        widget:set_markup(" " .. bat_now.perc .. "% " .. bat_now.time)
     end,
     ac = "ACAD",
     battery = "BAT1",
