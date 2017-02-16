@@ -56,11 +56,10 @@ run_once("unclutter -root")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker/theme.lua")
 
 -- common
-modkey     = "Mod4"
-altkey     = "Mod1"
-terminal   = "lxterminal" or "xterm"
-editor     = os.getenv("EDITOR") or "nano" or "vi"
-editor_cmd = terminal .. " -e " .. editor
+local modkey     = "Mod4"
+local altkey     = "Mod1"
+local terminal   = "lxterminal" or "xterm"
+local editor     = os.getenv("EDITOR") or "nano" or "vi"
 
 local layouts = {
     awful.layout.suit.floating,
