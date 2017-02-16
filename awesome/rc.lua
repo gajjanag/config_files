@@ -106,14 +106,6 @@ local mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
 local mytextclockbg = wibox.widget.background(mytextclock, "#313131")
 lain.widgets.calendar.attach(mytextclock, { font_size = 10 })
 
--- {{{ Wallpaper
-if beautiful.wallpaper then
-    for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-    end
-end
--- }}}
-
 -- Battery
 baticon = wibox.widget.imagebox(beautiful.widget_battery)
 batwidget = lain.widgets.bat({
@@ -132,6 +124,14 @@ batwidget = lain.widgets.bat({
     ac = "ACAD",
     battery = "BAT1",
 })
+
+-- {{{ Wallpaper
+if beautiful.wallpaper then
+    for s = 1, screen.count() do
+        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
+    end
+end
+-- }}}
 
 -- Weather
 cambridge_id    = 6254926
