@@ -107,8 +107,8 @@ local mytextclockbg = wibox.widget.background(mytextclock, "#313131")
 lain.widgets.calendar.attach(mytextclock, { font_size = 10 })
 
 -- Battery
-baticon = wibox.widget.imagebox(beautiful.widget_battery)
-batwidget = lain.widgets.bat({
+local baticon = wibox.widget.imagebox(beautiful.widget_battery)
+local bat = lain.widgets.bat({
     settings = function()
         if bat_now.status ~= "Discharging" then
             baticon:set_image(beautiful.widget_ac)
@@ -255,7 +255,7 @@ for s = 1, screen.count() do
     right_layout:add(myweathericonbg)
     right_layout:add(arrl_dl)
     right_layout:add(baticon)
-    right_layout:add(batwidget)
+    right_layout:add(bat)
     right_layout:add(arrl_ld)
     right_layout:add(mytextclockbg)
     right_layout:add(mylayoutboxbg[s])
