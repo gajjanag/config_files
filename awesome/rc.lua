@@ -270,7 +270,7 @@ for s = 1, screen.count() do
 end
 -- }}}
 
--- {{{ Mouse Bindings
+-- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
