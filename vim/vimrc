@@ -24,9 +24,6 @@ filetype plugin indent on
 " vi? This is VIMMMMMMMMMMMMMM
 set nocompatible
 
-" set colors correctly
-set t_Co=256
-
 """ Now the general stuff!
 
 " all movement keys will move the the next line when at last character
