@@ -306,8 +306,6 @@ set splitbelow
 
 nmap <silent> * :let @/='\<'.expand('<cword>').'\>' \| :set hlsearch<CR>
 
-set shell=/bin/bash
-
 " latex stuff
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
