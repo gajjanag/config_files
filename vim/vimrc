@@ -80,7 +80,7 @@ endif
 set showmatch
 
 " change pwd to mru file/buffer
-set autochdir
+set noautochdir
 command! Cdpwd execute "cd %:p:h"
 
 " use mouse
@@ -324,7 +324,6 @@ set laststatus=2
 
 syntax sync minlines=256
 
-set noautochdir
 
 set lazyredraw
 
