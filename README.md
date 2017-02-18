@@ -29,7 +29,7 @@ In particular, lain should be checked out to commit 301faf5 or earlier.
 * 30-touchpad.conf: configuration for touchpad, just to get tapping to work with recent libinput. See [libinput](https://wiki.archlinux.org/index.php/Libinput). Arch people claim it is an upstream design decision; I really don't care - it worked before, and it is ridiculous to break such things forcing end user configuration. Not the fault of Arch, just some silly upstream stuff.
 * qpdfview: configuration for [qpdfview](https://launchpad.net/qpdfview), a very elegant, simple qt/poppler based tabbed pdf/djvu/ps viewer.
 * makepkg.old: < 4.2 version of [makepkg](https://wiki.archlinux.org/index.php/Makepkg). 4.2 removed --asroot. In general, the idea is good, but it is a PITA to do automated installation of systems via scripting if one relies heavily on the AUR. I use it only temporarily until we get the base scaffold of the system up.
-* lxterminal: configuration for [lxterminal](https://github.com/lxde/lxterminal), a lightweight, tabbed terminal emulator from the [lxde](http://lxde.org) project.
+* sakura: configuration for [sakura](https://launchpad.net/sakura), a pretty small terminal emulator based off GTK and VTE.
 * mpv: configuration for [mpv](https://mpv.io/), a media player.
 * powertop.service: Uses [powertop](https://01.org/powertop), and this systemd service file automatically auto-tunes parameters on boot.
 * block_fb.sh: Blocks Facebook's entire IP address range, based off https://news.ycombinator.com/item?id=11791052.
