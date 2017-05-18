@@ -136,6 +136,7 @@ local bat = lain.widgets.bat({
 -- Weather
 cambridge_id    = 6254926
 union_city_id   = 5404554
+rsm_id          = 5386082
 bangalore_id    = 1277333
 puttur_id       = 1259124
 myweather = lain.widgets.weather({
