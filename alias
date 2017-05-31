@@ -1,6 +1,5 @@
 # Some aliases. Most are from the arch wiki
-## Modified commands ## {{{
-alias diff='colordiff'              # requires colordiff package
+## Modified commands ## {{{ alias diff='colordiff'              # requires colordiff package
 alias grep='grep --color=auto'
 alias more='less'
 alias df='df -h'
@@ -80,6 +79,13 @@ athenarestore() {
 # audio playback from command line
 play() {
     mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$@"
+}
+
+# plaintext web browsing given URL
+# useful for e.g reading articles behind paywall such as Wall Street Journal
+# I got this from https://news.ycombinator.com/item?id=14389986
+web_view() {
+    curl "$@" | sed -n '/./{/<title/,/<\/title/p;/<p>/,/<\/p>/p;}' | vim -
 }
 
 # Privileged access
