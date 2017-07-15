@@ -26,7 +26,6 @@ cd ~/projects/ffmpeg
     --enable-libopenjpeg \
     --enable-libopus \
     --enable-libpulse \
-    --enable-libschroedinger \
     --enable-libspeex \
     --enable-libssh \
     --enable-libtheora \
@@ -37,4 +36,3 @@ cd ~/projects/ffmpeg
     --enable-libx264 \
     --enable-libx265 \
     --enable-libxvid \
-    --enable-x11grab \
