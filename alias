@@ -1,3 +1,6 @@
+if [ "$(uname -s)" = "Darwin" ]; then
+    is_mac=true
+fi
 # Some aliases. Most are from the arch wiki
 ## Modified commands ## {{{ alias diff='colordiff'              # requires colordiff package
 alias grep='grep --color=auto'
@@ -28,7 +31,6 @@ alias getclip='xclip -selection clipboard -o'
 # }}}
 
 ## Custom commands ## {{{
-alias i3lock='i3lock -c 000000'
 alias screendim='xbacklight -set 5'
 alias screenbright='xbacklight -set 100'
 alias torrent='transmission-cli'
@@ -41,6 +43,11 @@ alias androidmount='jmtpfs ~/mtp'
 alias androidumount='fusermount -u ~/mtp'
 alias usbmount='mount /mnt/usb'
 alias usbumount='umount /mnt/usb'
+if [ $is_mac = true ]; then
+    alias i3lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
+else
+    alias i3lock='i3lock -c 000000'
+fi
 
 # This is needed for incompatibilites regarding string splitting.
 args() {
@@ -70,10 +77,16 @@ for dir in $(args $imp_dirs); do
     remote_dirs="${remote_dirs} $backup_loc/$dir"
 done
 athenasync() {
+    prev_alias=$(alias rsync)
+    unalias rsync
     eval "rsync -av --delete $local_dirs $backup_loc"
+    alias "$prev_alias"
 }
 athenarestore() {
+    prev_alias=$(alias rsync)
+    unalias rsync
     eval "rsync -av --delete $remote_dirs $src_loc"
+    alias "$prev_alias"
 }
 
 # audio playback from command line
@@ -101,7 +114,11 @@ if [ $UID -ne 0 ]; then
 fi
 
 ## ls ## {{{
-alias ls='ls -hF --color=auto'
+if [ $is_mac = true ]; then
+    alias ls='ls -G'
+else
+    alias ls='ls -hF --color=auto'
+fi
 alias lr='ls -R'                    # recursive ls
 alias ll='ls -l'
 alias lA='ls -A'
