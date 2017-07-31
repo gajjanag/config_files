@@ -14,8 +14,9 @@ fi
 source ~/.alias
 export TERM=xterm-256color
 
+export PYTHONSTARTUP=$HOME/.pystartup
+
 # tty hack (thanks to Nicolas George)
 # Basically, it restores terminal at the end of a pipeline,
 # useful in the event that a process crashes and has modified terminal state
 ttyctl -f
-
