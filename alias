@@ -43,7 +43,7 @@ alias androidmount='jmtpfs ~/mtp'
 alias androidumount='fusermount -u ~/mtp'
 alias usbmount='mount /mnt/usb'
 alias usbumount='umount /mnt/usb'
-if [ $is_mac = true ]; then
+if [ "$is_mac" = "true" ]; then
     alias i3lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
 else
     alias i3lock='i3lock -c 000000'
@@ -114,7 +114,7 @@ if [ $UID -ne 0 ]; then
 fi
 
 ## ls ## {{{
-if [ $is_mac = true ]; then
+if [ "$is_mac" = "true" ]; then
     alias ls='ls -G'
 else
     alias ls='ls -hF --color=auto'
