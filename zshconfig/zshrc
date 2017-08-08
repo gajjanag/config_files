@@ -20,3 +20,7 @@ export PYTHONSTARTUP=$HOME/.pystartup
 # Basically, it restores terminal at the end of a pipeline,
 # useful in the event that a process crashes and has modified terminal state
 ttyctl -f
+
+# allow comments on the command line, from:
+# https://stackoverflow.com/questions/11670935/comments-in-command-line-zsh
+setopt interactivecomments
