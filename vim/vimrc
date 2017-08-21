@@ -131,6 +131,7 @@ if has("autocmd")
 
     " project settings
     autocmd BufRead,BufNewFile ~/projects/ffmpeg/* setlocal cindent cinoptions=(0
+    autocmd BufRead,BufNewFile ~/dev/webg/* setlocal cindent cinoptions=(0
     autocmd BufRead,BufNewFile ~/projects/linux/* setlocal noexpandtab tabstop=8 shiftwidth=8 textwidth=78
 
     " automatically decompress gzipped files
