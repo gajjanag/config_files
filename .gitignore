@@ -3,3 +3,7 @@ vim/bundle
 vim/.netrwhist
 qpdfview/qpdfview.conf.*
 mpv/watch_later
+pulse/cookie
+pulse/*tdb
+pulse/*-source
+pulse/*-sink
