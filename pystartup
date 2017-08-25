@@ -25,3 +25,8 @@ if os.path.exists(historyPath):
 
 atexit.register(save_history)
 del os, atexit, readline, rlcompleter, save_history, historyPath
+
+# some common imports that I always use
+import numpy as np
+import importlib as imp
+import matplotlib.pyplot as plt
