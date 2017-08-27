@@ -460,6 +460,7 @@ user_pref("extensions.pocket.enabled", false);
 // https://gecko.readthedocs.org/en/latest/toolkit/components/telemetry/telemetry/preferences.html,
 // https://wiki.mozilla.org/Telemetry/Experiments
 user_pref("toolkit.telemetry.enabled", false);
+user_pref("toolkit.telemetry.archive.enabled", false);
 user_pref("toolkit.telemetry.unified", false);
 user_pref("experiments.supported", false);
 user_pref("experiments.enabled", false);
