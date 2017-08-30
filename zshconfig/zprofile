@@ -81,3 +81,8 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 if [[ -o login ]]; then
     eval $(ssh-agent) 2>&1 >/dev/null
 fi
+
+# Environment variables
+# Disable Mozilla crash reporter; all it does is spew some garbage to the disk
+# everytime new version gets installed
+export MOZ_CRASHREPORTER_DISABLE=1
