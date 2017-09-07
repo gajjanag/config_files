@@ -9,7 +9,7 @@ setxkbmap -option ctrl:nocaps  # Make Caps Lock a Control key
 xbindkeys
 
 # execute redshift
-redshift &
+[ -f /usr/bin/redshift ] && redshift &
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
@@ -22,6 +22,13 @@ fi
 # of choice
 [ -f /etc/xprofile ] && source /etc/xprofile
 [ -f ~/.xprofile ] && source ~/.xprofile
+
+# start Dropbox (if present) and start it with the Window manager
+# For all that Dropbox harps on ``cross-platform support''; hacks like this
+# are needed for Linux users who have a window manager different from KDE/Gnome,
+# etc (simply checkmarking Dropbox's preference to startup at boot automatically
+# does not work)
+[ -f /usr/bin/dropbox ] && /usr/bin/dropbox &
 
 exec awesome
 # lower power consumption/debug awesome config, uncomment below
