@@ -24,3 +24,8 @@ ttyctl -f
 # allow comments on the command line, from:
 # https://stackoverflow.com/questions/11670935/comments-in-command-line-zsh
 setopt interactivecomments
+
+# Gurobi stuff
+export GUROBI_HOME="/opt/gurobi/linux64"
+export PATH="${PATH}:${GUROBI_HOME}/bin"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
