@@ -1,0 +1,8 @@
+# Print the message.
+cat <<-EOF
+
+If we are to live, we must take risks. Else our lives become deaths in all but
+name. There is no struggle too vast, no odds too overwhelming, for even should
+we fail - should we fall - we will know that we have lived.
+    -- Anomander Rake
+EOF
