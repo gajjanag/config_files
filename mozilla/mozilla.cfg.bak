@@ -30,11 +30,6 @@ lockPref("dom.indexedDB.enabled", false);
 // with this config, and also yields less to panopticlick
 // also (minor): gives less bits of info to panopticlick
 //lockPref("dom.storage.enabled", false);
-lockPref("javascript.options.asmjs", false);
-lockPref("javascript.options.wasm", false);
-
-// Sync
-lockPref("services.sync.enabled", false);
 
 // Some fingerprinting
 lockPref("media.video_stats.enabled", false);
