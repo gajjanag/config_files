@@ -30,7 +30,6 @@ lockPref("general.buildID.override", "20100101");
 lockPref("browser.display.use_document_fonts", 0);
 
 // Privacy
-lockPref("browser.privatebrowsing.autostart", true);
 lockPref("browser.helperApps.deleteTempFileOnExit", true);
 lockPref("datareporting.healthreport.uploadEnabled", false);
 lockPref("datareporting.healthreport.service.enabled", false);
@@ -75,7 +74,6 @@ lockPref("network.predictor.enabled", false);
 // Security
 lockPref("network.proxy.socks_remote_dns", true);
 lockPref("network.manage-offline-status", false);
-lockPref("plugin.state.flash", 0);
 lockPref("extensions.getAddons.cache.enabled", false);
 lockPref("extensions.update.enabled", true);
 lockPref("extensions.blocklist.enabled", true);
@@ -90,7 +88,6 @@ lockPref("browser.safebrowsing.malware.enabled", true);
 lockPref("browser.safebrowsing.enabled", true);
 lockPref("security.csp.enable", true);
 lockPref("security.csp.experimentalEnabled", true);
-lockPref("network.IDN_show_punycode", true);
 
 // Security related to UI
 lockPref("clipboard.autocopy", false);
