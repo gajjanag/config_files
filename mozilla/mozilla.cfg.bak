@@ -2,7 +2,6 @@
 // API's
 lockPref("geo.enabled", false);
 lockPref("beacon.enabled", false);
-lockPref("device.sensors.enabled", false);
 lockPref("dom.webnotifications.enabled", false);
 lockPref("dom.netinfo.enabled", false);
 lockPref("dom.telephony.enabled", false);
@@ -31,9 +30,6 @@ lockPref("general.buildID.override", "20100101");
 lockPref("browser.display.use_document_fonts", 0);
 
 // Privacy
-lockPref("browser.sessionstore.privacy_level", 2);
-lockPref("browser.sessionstore.max_tabs_undo", 0);
-lockPref("browser.sessionstore.max_windows_undo", 0);
 lockPref("browser.privatebrowsing.autostart", true);
 lockPref("browser.helperApps.deleteTempFileOnExit", true);
 lockPref("datareporting.healthreport.uploadEnabled", false);
