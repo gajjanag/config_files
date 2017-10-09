@@ -35,3 +35,4 @@ In particular, lain should be checked out to commit 301faf5 or earlier.
 * block_fb.sh: Blocks Facebook's entire IP address range, based off https://news.ycombinator.com/item?id=11791052.
 * pystartup: A simple method to store history across Python interpreter sessions. No idea why this is not part of the Python distribution itself.
 * pulse: configuration for [pulseaudio](https://www.freedesktop.org/wiki/Software/PulseAudio/).
+* pacman: Configuration files for [Pacman](https://www.archlinux.org/pacman/); mainly hooks.
