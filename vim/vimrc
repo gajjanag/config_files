@@ -312,6 +312,12 @@ set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
 let g:Tex_ViewRule_pdf='qpdfview --unique'
 let g:Tex_DefaultTargetFormat='pdf'
+augroup WrapLineInTeXFile
+    autocmd!
+    autocmd FileType tex setlocal wrap
+    autocmd FileType tex setlocal textwidth=78
+    autocmd FileType tex setlocal fo=cqt
+augroup END
 
 " nnoremap Z :w<CR>
 nnoremap X :w<CR>
