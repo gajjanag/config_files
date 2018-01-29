@@ -1,5 +1,29 @@
 \ProvidesPackage{macros}
 \RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{mathtools}
 
 % Symbols
+\newcommand{\F}{\mathbb{F}} % finite field
 \newcommand{\R}{\mathbb{R}} % real numbers
+\newcommand{\Q}{\mathbb{Q}} % rational numbers
+\newcommand{\Z}{\mathbb{Z}} % integers
+\newcommand{\N}{\mathbb{N}} % nonnegative integers == natural numbers
+\DeclareMathOperator{\Hom}{Hom} % the set of homomorphisms between objects
+\DeclareMathOperator{\End}{End} % the set of endomorphisms of an object
+\let\bademptyset\emptyset
+\renewcommand{\emptyset}{\varnothing} % empty set
+
+% Operators
+\DeclarePairedDelimiterX{\ip}[2]{\langle}{\rangle}{#1, #2} % \ip{a}{b}=<a,b>
+\DeclareMathOperator{\Rank}{rank} % rank of a subspace
+\DeclareMathOperator{\Span}{span} % span of a set of vectors
+\DeclareMathOperator*{\union}{\bigcup}
+\DeclareMathOperator*{\intersect}{\bigcap}
+
+% Environments
+\newtheorem{thm}{Theorem}
+\newtheorem{propn}{Proposition}
+\newtheorem{defn}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}

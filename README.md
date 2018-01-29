@@ -36,3 +36,4 @@ In particular, lain should be checked out to commit 301faf5 or earlier.
 * pystartup: A simple method to store history across Python interpreter sessions. No idea why this is not part of the Python distribution itself.
 * pulse: configuration for [pulseaudio](https://www.freedesktop.org/wiki/Software/PulseAudio/).
 * pacman: Configuration files for [Pacman](https://www.archlinux.org/pacman/); mainly hooks.
+* latex: LaTeX settings (mainly macros).
