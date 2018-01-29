@@ -43,6 +43,8 @@ alias androidmount='jmtpfs ~/mtp'
 alias androidumount='fusermount -u ~/mtp'
 alias usbmount='mount /mnt/usb'
 alias usbumount='umount /mnt/usb'
+alias storagemount='mount ~/storage'
+alias storageumount='umount ~/storage'
 if [ "$is_mac" = "true" ]; then
     alias i3lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
 else
@@ -68,18 +70,29 @@ doc \
 music"
 src_loc="/home/$user_name"
 backup_loc=$user_name@athena.dialup.mit.edu:Private
+storage_loc="/home/$user_name/storage"
 local_dirs=""
 remote_dirs=""
+storage_dirs=""
 for dir in $(args $imp_dirs); do
     local_dirs="${local_dirs} $src_loc/$dir"
 done
 for dir in $(args $imp_dirs); do
     remote_dirs="${remote_dirs} $backup_loc/$dir"
+    storage_dirs="${storage_dirs} $storage_loc/$dir"
 done
 athenasync() {
     prev_alias=$(alias rsync)
     unalias rsync
     eval "rsync -av --delete $local_dirs $backup_loc"
+    alias "$prev_alias"
+}
+storagesync() {
+    prev_alias=$(alias rsync)
+    unalias rsync
+    eval "rsync -av --delete $local_dirs $storage_loc"
+    eval "rsync -av --delete ~/videos $storage_loc"
+    eval "rsync -av --delete ~/Dropbox $storage_loc"
     alias "$prev_alias"
 }
 athenarestore() {
