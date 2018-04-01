@@ -26,6 +26,7 @@ ttyctl -f
 setopt interactivecomments
 
 # Gurobi stuff
-export GUROBI_HOME="/opt/gurobi/linux64"
+export GUROBI_HOME="/opt/gurobi752/linux64"
 export PATH="${PATH}:${GUROBI_HOME}/bin"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
+export GRB_LICENSE_FILE=/home/gajjanag/gurobi.lic
