@@ -337,6 +337,3 @@ syntax sync minlines=256
 
 
 set lazyredraw
-
-set cursorline
-set cursorcolumn
