@@ -114,6 +114,11 @@ web_view() {
     curl "$@" | sed -n '/./{/<title/,/<\/title/p;/<p>/,/<\/p>/p;}' | vim -
 }
 
+# merge pdf's using ghostscript
+pdfmerge() {
+    /usr/bin/gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -sOutputFile=$@
+}
+
 # Privileged access
 if [ $UID -ne 0 ]; then
     alias sudo='sudo '
