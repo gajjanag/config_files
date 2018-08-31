@@ -37,3 +37,4 @@ In particular, lain should be checked out to commit 301faf5 or earlier.
 * pulse: configuration for [pulseaudio](https://www.freedesktop.org/wiki/Software/PulseAudio/).
 * pacman: Configuration files for [Pacman](https://www.archlinux.org/pacman/); mainly hooks.
 * latex: LaTeX settings (mainly macros).
+* sage: [SageMath](https://www.sagemath.org/) settings.
