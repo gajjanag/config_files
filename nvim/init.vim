@@ -1,77 +1,50 @@
-filetype plugin indent on
+" plugins
+call plug#begin('~/.local/share/nvim/plugged')
+" syntax checking
+Plug 'neomake/neomake'
+" LaTeX support
+Plug 'lervag/vimtex'
+" Julia language support
+Plug 'JuliaEditorSupport/julia-vim'
+" color scheme
+Plug 'junegunn/seoul256.vim'
+call plug#end()
 
-" vi? This is VIMMMMMMMMMMMMMM
-set nocompatible
-
-""" Now the general stuff!
-
-" all movement keys will move the the next line when at last character
-set whichwrap=b,s,h,l,~,[,],<,>
-
-" I'm a programmer.
-syntax on
+" Visual appearance: line numbers, 80 col highlight, matching parens, colors
 set number
+set colorcolumn=80
+set showmatch
+colo seoul256
 
-set timeoutlen=500
-
-" turn on hlsearch, but make it go away when I want
-set hls
-nmap <space><space> :noh<CR>/<BS>
-
-" show command as I'm typing it
-set showcmd
-
-" search stuff
+" search stuff - smartcase + ability to turn off with space+space
 set ignorecase
 set smartcase
-set incsearch
+nmap <space><space> :noh<CR>/<BS>
 
-" I have no idea, but I think these are fine
-"set viminfo=/10,'10,r/mnt/zip,r/mnt/floppy,f0,h,\"100
-set wildmode=list:longest,full
-set shortmess+=r
-set bs=2
-set showmode
+" Indentation at multiples
 set shiftround
 
 " make wrapping the way I want: do not break in middle of word
 " and highlight above 80 columns
-set wrap
 set linebreak
-if exists('+colorcolumn')
-  set colorcolumn=80
-else
-  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endif
 
-" Set up backup location and enable
-" the double slash means editing /etc/X11/x.org and ~/x.org won't clobber
-set backupdir=~/.vim/backup//
-set backup
-set directory=~/.vim/swap//
-if v:version >= '703'
-    set undodir=~/.vim/undo//
-    set undofile
-    set undoreload=50000
-endif
+" undo history
+set undofile
 
-" show matching parens, brackets
-set showmatch
-
-" change pwd to mru file/buffer
-set noautochdir
-command! Cdpwd execute "cd %:p:h"
-
-" use mouse
-if has('mouse')
-  set mouse=a
-endif
+" LaTeX
+let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_viewer_method='mupdf'
+augroup WrapLineInTeXFile
+    autocmd!
+    autocmd FileType tex setlocal wrap
+    autocmd FileType tex setlocal textwidth=78
+    autocmd FileType tex setlocal fo+=t
+    autocmd FileType tex setlocal fo-=l
+augroup END
 
 " ignore some stuff
 set wildignore+=*/.hg/*,*/.svn/*,*/.git/*,*.pyc,*.so
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
     augroup executePermissions
         au!
         " adds execute permissions if file starts with appropriate shebang
@@ -112,24 +85,6 @@ if has("autocmd")
     autocmd BufRead,BufNewFile ~/projects/ffmpeg/* setlocal cindent cinoptions=(0
     autocmd BufRead,BufNewFile ~/dev/webg/* setlocal cindent cinoptions=(0
     autocmd BufRead,BufNewFile ~/projects/linux/* setlocal noexpandtab tabstop=8 shiftwidth=8 textwidth=78
-
-    " automatically decompress gzipped files
-    augroup gzip
-        autocmd!
-        autocmd BufReadPre,FileReadPre *.gz set bin
-        autocmd BufReadPost,FileReadPost   *.gz '[,']!gunzip
-        autocmd BufReadPost,FileReadPost   *.gz set nobin
-        autocmd BufReadPost,FileReadPost   *.gz execute ":doautocmd BufReadPost " . expand("%:r")
-        autocmd BufWritePost,FileWritePost *.gz !mv <afile> <afile>:r
-        autocmd BufWritePost,FileWritePost *.gz !gzip <afile>:r
-        autocmd FileAppendPre      *.gz !gunzip <afile>
-        autocmd FileAppendPre      *.gz !mv <afile>:r <afile>
-        autocmd FileAppendPost     *.gz !mv <afile> <afile>:r
-        autocmd FileAppendPost     *.gz !gzip <afile>:r
-    augroup END
-else
-    set autoindent
-endif
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
@@ -174,8 +129,6 @@ set smarttab
 set formatoptions=lc
 set lbr
 
-set ruler
-
 " correct my common typos
 if (&encoding == "utf-8")
     set list
@@ -185,18 +138,12 @@ else
     set nolist
 endif
 
-" fonts and colors
-syntax enable
-
 " fold stuff
 set fdo=hor,insert,search,undo,tag
 set fillchars="fold:"
 
 " sets w!! to sudo write
 cmap w!! w !sudo tee % > /dev/null
-
-" auto-read changed buffers from disk
-set autoread
 
 " open definition in a new tab
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
@@ -208,11 +155,6 @@ set wildmenu
 
 " set completion to show a preview window
 set cot=menu,preview,menuone
-
-" use blowfish encryption with :X
-if v:version >= '703'
-    set cm=blowfish
-endif
 
 " easier jumping between errors and opening error list window
 " map <leader>cc :botright cope<cr> " there seem to be errors with the
@@ -247,61 +189,20 @@ endfunc
 nnoremap <C-K> :call g:ToggleNuMode()<cr>
 vnoremap <C-K> :call g:ToggleNuMode()<cr>
 
-if has("gui_macvim")
-    silent! set gfn=Inconsolata-g:h12
-    " transparency
-    " set transparency=3
-    " don't show toolbar buttons
-    set guioptions-=T
-    " always show tab bar (so windows don't resize with just one tab open)
-    set showtabline=2
-elseif has("gui")
-    silent! set gfm=Droid\ Sans\ Mono\ 12
-    set guioptions-=Tma
-endif
-
-" in bash vi mode, a "v" in command mode starts a vim session that gets
-" executed on leave. this makes sure syntax highlighting works there.
-if expand('%:t') =~?'bash-fc-\d\+'
-    setfiletype sh
-endif
-
 " new, experimental, and in need of organization
-set ttyfast
-set backspace=indent,eol,start
-set history=1000
 set splitright
 " this makes help appear on the bottom, which is annoying, but it also makes
 " omnicomplete previews appear on the bottom, which i like
 set splitbelow
 
-nmap <silent> * :let @/='\<'.expand('<cword>').'\>' \| :set hlsearch<CR>
-
 " latex stuff
 set grepprg=grep\ -nH\ $*
-let g:tex_flavor='latex'
-let g:Tex_ViewRule_pdf='qpdfview --unique'
-let g:Tex_DefaultTargetFormat='pdf'
-let g:Tex_MultipleCompileFormats='pdf, aux'
-augroup WrapLineInTeXFile
-    autocmd!
-    autocmd FileType tex setlocal wrap
-    autocmd FileType tex setlocal textwidth=78
-    autocmd FileType tex setlocal fo+=t
-    autocmd FileType tex setlocal fo-=l
-augroup END
 
 " nnoremap Z :w<CR>
 nnoremap X :w<CR>
 
-set vb t_vb=                " Disable all bells.  I hate ringing/flashing.
 set confirm                 " Y-N-C prompt if closing with unsaved changes.
-set showcmd                 " Show incomplete normal mode commands as I type.
 set report=0                " : commands always print changed line count.
-set shortmess+=a            " Use [+]/[RO]/[w] for modified/readonly/written.
-
-let g:airline_powerline_fonts = 0 " this needs to be in vimrc for some ordering issue
-set laststatus=2
 
 syntax sync minlines=256
 
