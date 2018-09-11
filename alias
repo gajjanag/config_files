@@ -1,6 +1,9 @@
 if [ "$(uname -s)" = "Darwin" ]; then
     is_mac=true
 fi
+if command -v nvim >/dev/null 2>&1 ; then
+    has_nvim=true
+fi
 # Some aliases. Most are from the arch wiki
 ## Modified commands ## {{{ alias diff='colordiff'              # requires colordiff package
 alias grep='grep --color=auto'
@@ -11,7 +14,14 @@ alias mkdir='mkdir -p -v'
 alias nano='nano -w'
 alias ping='ping -c 5'
 alias dmesg='dmesg -HL'
-alias vi='vim'
+if [ "$has_nvim" = "true" ]; then
+    alias vi='nvim'
+    alias vim='nvim'
+else
+    alias vi='vim'
+fi
+alias qpdfview='qpdfview --unique'
+
 alias mutt='cd ~/Downloads && mutt'
 alias reboot='systemctl reboot'
 alias shutdown='systemctl poweroff'
