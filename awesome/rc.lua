@@ -58,7 +58,7 @@ beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker/t
 -- common
 local modkey     = "Mod4"
 local altkey     = "Mod1"
-local terminal   = "sakura" or "xterm"
+local terminal   = "lxterminal" or "xterm"
 local editor     = os.getenv("EDITOR") or "nano" or "vi"
 
 -- user defined
