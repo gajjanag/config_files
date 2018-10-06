@@ -18,12 +18,12 @@
 	defaults = simple
 	default = simple
 [sendemail]
-	smtpuser = gajjanag@yandex.com
-	smtpserver = smtp.yandex.com
+	smtpuser = gajjanag@fastmail.com
+	smtpserver = smtp.fastmail.com
 	smtpencryption = ssl
 	smtpserverport = 465
 	to = ffmpeg-devel@ffmpeg.org
-	from = gajjanag@yandex.com
+	from = gajjanag@fastmail.com
 [color "diff"]
 	whitespace = red reverse
 [diff]
