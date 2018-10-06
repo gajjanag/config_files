@@ -394,7 +394,9 @@ user_pref("privacy.trackingprotection.pbmode.enabled", true);
 // ref: https://bugzil.la/418986,
 // https://bugzil.la/1281949,
 // https://bugzil.la/1281963
-user_pref("privacy.resistFingerprinting", true);
+// Unfortunately, for now this causes issues with webmail, which relies upon
+// the browser for time (that now gets set to UTC), hence commented out
+// user_pref("privacy.resistFingerprinting", true);
 
 // Health report
 // Disable this; see Telemetry note for why I do not send data to Mozilla
