@@ -101,7 +101,6 @@ storagesync() {
     unalias rsync
     eval "rsync -av --delete $local_dirs $storage_loc"
     eval "rsync -av --delete ~/videos $storage_loc"
-    eval "rsync -av --delete ~/Dropbox $storage_loc"
     alias "$prev_alias"
 }
 athenarestore() {
