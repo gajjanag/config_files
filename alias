@@ -75,19 +75,25 @@ courses \
 dev \
 ganesh \
 research \
-doc \
-music"
+doc"
+extra_dirs="videos \
+music \
+photos"
 src_loc="/home/$user_name"
 backup_loc=$user_name@athena.dialup.mit.edu:Private
 storage_loc="/home/$user_name/storage"
 local_dirs=""
+full_local_dirs=""
 remote_dirs=""
 storage_dirs=""
 for dir in $(args $imp_dirs); do
     local_dirs="${local_dirs} $src_loc/$dir"
-done
-for dir in $(args $imp_dirs); do
     remote_dirs="${remote_dirs} $backup_loc/$dir"
+    storage_dirs="${storage_dirs} $storage_loc/$dir"
+    full_local_dirs="${full_local_dirs} $src_loc/$dir"
+done
+for dir in $(args $extra_dirs); do
+    full_local_dirs="${full_local_dirs} $src_loc/$dir"
     storage_dirs="${storage_dirs} $storage_loc/$dir"
 done
 athenasync() {
@@ -99,14 +105,19 @@ athenasync() {
 storagesync() {
     prev_alias=$(alias rsync)
     unalias rsync
-    eval "rsync -av --delete $local_dirs $storage_loc"
-    eval "rsync -av --delete ~/videos $storage_loc"
+    eval "rsync -av --delete $full_local_dirs $storage_loc"
     alias "$prev_alias"
 }
 athenarestore() {
     prev_alias=$(alias rsync)
     unalias rsync
     eval "rsync -av --delete $remote_dirs $src_loc"
+    alias "$prev_alias"
+}
+storagerestore() {
+    prev_alias=$(alias rsync)
+    unalias rsync
+    eval "rsync -av --delete $storage_dirs $src_loc"
     alias "$prev_alias"
 }
 
