@@ -1,0 +1,23 @@
+#!/usr/bin/julia
+
+if length(ARGS) > 1
+    error("Only one directory is supported!")
+elseif length(ARGS) == 0
+    dir = pwd()
+else
+    dir = ARGS[1]
+end
+for (root, dirs, files) in walkdir(dir)
+    for file in files
+        oldpath = joinpath(root, file)
+        newfile = replace(file, r"[A-Z]" => x -> "_"*lowercase(x))
+        if newfile[1] == '_'
+            newpath = joinpath(root, newfile[2:end])
+        else
+            newpath = joinpath(root, newfile)
+        end
+        if (newpath != oldpath)
+            mv(oldpath, newpath)
+        end
+    end
+end
