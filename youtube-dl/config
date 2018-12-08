@@ -1,3 +1,3 @@
 # mpv does not support dash segments yet, see commit:
 # https://github.com/mpv-player/mpv/commit/5bcb22beea14bb48a84c610425d5693e0305e434
--f (bestvideo[height<=?1080]+bestaudio/best)[protocol!=http_dash_segments]
+-f (bestvideo[height<=?1080][fps<=30]+bestaudio/best)[protocol!=http_dash_segments]
