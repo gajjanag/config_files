@@ -78,7 +78,8 @@ research \
 doc"
 extra_dirs="videos \
 music \
-photos"
+photos \
+projects"
 src_loc="/home/$user_name"
 backup_loc=$user_name@athena.dialup.mit.edu:Private
 storage_loc="/home/$user_name/storage"
