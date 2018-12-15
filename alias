@@ -59,6 +59,7 @@ if [ "$is_mac" = "true" ]; then
 else
     alias i3lock='i3lock -c 000000'
 fi
+alias gp='/usr/bin/gp'
 
 # This is needed for incompatibilites regarding string splitting.
 args() {
