@@ -3,3 +3,4 @@ vim/bundle
 vim/.netrwhist
 qpdfview/qpdfview.conf.*
 mpv/watch_later
+latex/texmf/bibtex

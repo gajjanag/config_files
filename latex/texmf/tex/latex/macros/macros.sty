@@ -3,17 +3,30 @@
 \RequirePackage{amsthm}
 \RequirePackage{bbm}
 \RequirePackage{mathtools}
+\RequirePackage{array}   % for \newcolumntype macro
 
-% Symbols
+% standard sets
 \newcommand{\F}{\mathbb{F}} % finite field
 \newcommand{\R}{\mathbb{R}} % real numbers
 \newcommand{\Q}{\mathbb{Q}} % rational numbers
 \newcommand{\Z}{\mathbb{Z}} % integers
 \newcommand{\N}{\mathbb{N}} % nonnegative integers == natural numbers
+
+% custom sets
+\newcommand{\mA}{\mathcal{A}}
+\newcommand{\mB}{\mathcal{B}}
+\newcommand{\mC}{\mathcal{C}}
+\newcommand{\mJ}{\mathcal{J}}
+
+% special stuff
 \DeclareMathOperator{\Hom}{Hom} % the set of homomorphisms between objects
 \DeclareMathOperator{\End}{End} % the set of endomorphisms of an object
 \let\bademptyset\emptyset
 \renewcommand{\emptyset}{\varnothing} % empty set
+\newcommand{\dunion}{\mathop{\dot{\cup}}} % disjoint union
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{C}{>{$}c<{$}} % math-mode version of "c" column type
+\newcolumntype{R}{>{$}r<{$}} % math-mode version of "r" column type
 
 % Operators
 \DeclarePairedDelimiterX{\ip}[2]{\langle}{\rangle}{#1, #2} % \ip{a}{b}=<a,b>
