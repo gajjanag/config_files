@@ -142,8 +142,9 @@ endif
 set fdo=hor,insert,search,undo,tag
 set fillchars="fold:"
 
-" sets w!! to sudo write
-cmap w!! w !sudo tee % > /dev/null
+" sets w!! to sudo write, still does not work in neovim:
+" https://github.com/neovim/neovim/issues/1716
+"cmap w!! w !sudo tee % > /dev/null
 
 " open definition in a new tab
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
