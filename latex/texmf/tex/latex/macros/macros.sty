@@ -24,6 +24,10 @@
 \let\bademptyset\emptyset
 \renewcommand{\emptyset}{\varnothing} % empty set
 \newcommand{\dunion}{\mathop{\dot{\cup}}} % disjoint union
+\newcommand\indep{\protect\mathpalette{\protect\indepT}{\perp}} % independence
+\def\indepT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+% \newcommand{\notindep}{\centernot{\indep}} % not independent, requires centernot
+
 \newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
 \newcolumntype{C}{>{$}c<{$}} % math-mode version of "c" column type
 \newcolumntype{R}{>{$}r<{$}} % math-mode version of "r" column type
