@@ -17,6 +17,13 @@
 \newcommand{\mB}{\mathcal{B}}
 \newcommand{\mC}{\mathcal{C}}
 \newcommand{\mJ}{\mathcal{J}}
+\newcommand{\mS}{\mathcal{S}}
+\newcommand{\mX}{\mathcal{X}}
+\newcommand{\mY}{\mathcal{Y}}
+
+% random variables
+\newcommand{\rX}{\mathbf{x}}
+\newcommand{\rY}{\mathbf{y}}
 
 % special stuff
 \DeclareMathOperator{\Hom}{Hom} % the set of homomorphisms between objects
@@ -27,6 +34,8 @@
 \newcommand\indep{\protect\mathpalette{\protect\indepT}{\perp}} % independence
 \def\indepT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
 % \newcommand{\notindep}{\centernot{\indep}} % not independent, requires centernot
+% align* but number selectively
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 
 \newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
 \newcolumntype{C}{>{$}c<{$}} % math-mode version of "c" column type
