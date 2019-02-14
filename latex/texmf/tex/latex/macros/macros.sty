@@ -8,6 +8,7 @@
 % standard sets
 \newcommand{\F}{\mathbb{F}} % finite field
 \newcommand{\R}{\mathbb{R}} % real numbers
+\newcommand{\Sphere}{\mathbb{S}} % sphere
 \newcommand{\Q}{\mathbb{Q}} % rational numbers
 \newcommand{\Z}{\mathbb{Z}} % integers
 \newcommand{\N}{\mathbb{N}} % nonnegative integers == natural numbers
@@ -16,7 +17,10 @@
 \newcommand{\mA}{\mathcal{A}}
 \newcommand{\mB}{\mathcal{B}}
 \newcommand{\mC}{\mathcal{C}}
+\newcommand{\mD}{\mathcal{D}}
 \newcommand{\mJ}{\mathcal{J}}
+\newcommand{\mP}{\mathcal{P}}
+\newcommand{\mR}{\mathcal{R}}
 \newcommand{\mS}{\mathcal{S}}
 \newcommand{\mX}{\mathcal{X}}
 \newcommand{\mY}{\mathcal{Y}}
@@ -49,6 +53,9 @@
 \DeclareMathOperator*{\intersect}{\bigcap}
 \DeclareMathOperator*{\E}{\mathbb{E}} % expectation
 \DeclareMathOperator*{\I}{\mathbbm{1}} % indicator function
+\newcommand{\interior}[1]{%
+  {\kern0pt#1}^{\mathrm{o}}%
+} % set interior
 
 % Environments
 \newtheorem{thm}{Theorem}
@@ -57,3 +64,4 @@
 \newtheorem{defn}{Definition}
 \newtheorem{lemma}{Lemma}
 \newtheorem{remark}{Remark}
+\newtheorem{corollary}{Corollary}
