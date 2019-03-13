@@ -97,6 +97,9 @@ for dir in $(args $extra_dirs); do
     full_local_dirs="${full_local_dirs} $src_loc/$dir"
     storage_dirs="${storage_dirs} $storage_loc/$dir"
 done
+is_mounted() {
+    findmnt -rno SOURCE,TARGET "$1" >/dev/null #path or device
+}
 athenasync() {
     prev_alias=$(alias rsync)
     unalias rsync
@@ -104,10 +107,14 @@ athenasync() {
     alias "$prev_alias"
 }
 storagesync() {
-    prev_alias=$(alias rsync)
-    unalias rsync
-    eval "rsync -av --delete $full_local_dirs $storage_loc"
-    alias "$prev_alias"
+    if ! is_mounted /dev/sdb1 /home/$user_name/storage ; then
+        echo "External drive not mounted, exiting!" && return 1
+    else
+        prev_alias=$(alias rsync)
+        unalias rsync
+        eval "rsync -av --delete $full_local_dirs $storage_loc"
+        alias "$prev_alias"
+    fi
 }
 athenarestore() {
     prev_alias=$(alias rsync)
@@ -116,10 +123,14 @@ athenarestore() {
     alias "$prev_alias"
 }
 storagerestore() {
-    prev_alias=$(alias rsync)
-    unalias rsync
-    eval "rsync -av --delete $storage_dirs $src_loc"
-    alias "$prev_alias"
+    if ! is_mounted /dev/sdb1 /home/$user_name/storage ; then
+        echo "External drive not mounted, exiting!" && return 1
+    else
+        prev_alias=$(alias rsync)
+        unalias rsync
+        eval "rsync -av --delete $storage_dirs $src_loc"
+        alias "$prev_alias"
+    fi
 }
 
 # audio playback from command line
