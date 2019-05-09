@@ -10,6 +10,11 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'junegunn/seoul256.vim'
 call plug#end()
 
+" syntax highlighting for sagemath
+augroup filetypedetect
+  au! BufRead,BufNewFile *.sage,*.spyx,*.pyx setfiletype python
+augroup END
+
 " Visual appearance: line numbers, 80 col highlight, matching parens, colors
 set number
 set colorcolumn=80
