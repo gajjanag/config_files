@@ -1,9 +1,0 @@
-[Unit]
-Description=Runs block_fb some time after boot
-After=network-online.target
-
-[Timer]
-OnStartupSec=30
-
-[Install]
-WantedBy=timers.target

@@ -2,5 +2,8 @@
 Description=Block Facebook's IP range
 
 [Service]
-Type=oneshot
-ExecStart=/usr/bin/block_fb.sh
+Type=simple
+ExecStart=/usr/bin/block_fb
+
+[Install]
+WantedBy=multi-user.target
