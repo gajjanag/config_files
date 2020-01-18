@@ -51,8 +51,6 @@ alias androidmount='jmtpfs ~/mtp'
 alias androidumount='fusermount -u ~/mtp'
 alias usbmount='mount /mnt/usb'
 alias usbumount='umount /mnt/usb'
-alias storagemount='mount ~/storage'
-alias storageumount='umount ~/storage'
 if [ "$is_mac" = "true" ]; then
     alias i3lock='/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend'
 else
@@ -82,7 +80,8 @@ photos \
 projects"
 src_loc="/home/$user_name"
 backup_loc=$user_name@athena.dialup.mit.edu:Private
-storage_loc="/home/$user_name/storage"
+storage_loc1="/home/$user_name/storage_wd1"
+storage_loc2="/home/$user_name/storage_wd2"
 local_dirs=""
 full_local_dirs=""
 remote_dirs=""
@@ -90,12 +89,14 @@ storage_dirs=""
 for dir in $(args $imp_dirs); do
     local_dirs="${local_dirs} $src_loc/$dir"
     remote_dirs="${remote_dirs} $backup_loc/$dir"
-    storage_dirs="${storage_dirs} $storage_loc/$dir"
+    storage1_dirs="${storage1_dirs} $storage_loc1/$dir"
+    storage2_dirs="${storage2_dirs} $storage_loc2/$dir"
     full_local_dirs="${full_local_dirs} $src_loc/$dir"
 done
 for dir in $(args $extra_dirs); do
     full_local_dirs="${full_local_dirs} $src_loc/$dir"
-    storage_dirs="${storage_dirs} $storage_loc/$dir"
+    storage1_dirs="${storage1_dirs} $storage_loc1/$dir"
+    storage2_dirs="${storage2_dirs} $storage_loc2/$dir"
 done
 is_mounted() {
     findmnt -rno SOURCE,TARGET "$1" >/dev/null #path or device
@@ -107,13 +108,32 @@ athenasync() {
     alias "$prev_alias"
 }
 storagesync() {
-    if ! is_mounted /dev/sdb1 /home/$user_name/storage ; then
-        echo "External drive not mounted, exiting!" && return 1
+    mount $storage_loc1
+    d1=$?
+    mount $storage_loc2
+    d2=$?
+    if [ $d1 -ne 0 ]  && [ $d2 -ne 0 ]; then
+        echo "External drives not mounted, exiting!"
+        return 1
     else
-        prev_alias=$(alias rsync)
-        unalias rsync
-        eval "rsync -av --delete $full_local_dirs $storage_loc"
-        alias "$prev_alias"
+        if [ $d1 -eq 0 ]; then
+            echo "External drive 1 mounted, syncing to it"
+            prev_alias=$(alias rsync)
+            unalias rsync
+            eval "rsync -av --delete $full_local_dirs $storage_loc1"
+            alias "$prev_alias"
+            echo "Unmounting drive 1"
+            umount $storage_loc1
+        fi
+        if [ $d2 -eq 0 ]; then
+            echo "External drive 2 mounted, syncing to it"
+            prev_alias=$(alias rsync)
+            unalias rsync
+            eval "rsync -av --delete $full_local_dirs $storage_loc2"
+            alias "$prev_alias"
+            echo "Unmounting drive 2"
+            umount $storage_loc2
+        fi
     fi
 }
 athenarestore() {
@@ -123,13 +143,17 @@ athenarestore() {
     alias "$prev_alias"
 }
 storagerestore() {
-    if ! is_mounted /dev/sdb1 /home/$user_name/storage ; then
-        echo "External drive not mounted, exiting!" && return 1
+    mount $storage_loc1
+    d1=$?
+    if [ $d1 -ne 0 ]; then
+        echo "External drive 1 not mounted, exiting!"
+        return 1
     else
         prev_alias=$(alias rsync)
         unalias rsync
-        eval "rsync -av --delete $storage_dirs $src_loc"
+        eval "rsync -av --delete $storage1_dirs $src_loc"
         alias "$prev_alias"
+        umount $storage_loc1
     fi
 }
 
