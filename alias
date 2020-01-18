@@ -4,6 +4,27 @@ fi
 if command -v nvim >/dev/null 2>&1 ; then
     has_nvim=true
 fi
+
+# colorize stuff
+if test -t 1 && which tput >/dev/null 2>&1; then
+    ncolors=$(tput colors)
+    if test -n "$ncolors" && test $ncolors -ge 8; then
+        bold_color=$(tput bold)
+        normal_color=$(tput setaf 2)
+        warn_color=$(tput setaf 3)
+        error_color=$(tput setaf 1)
+        reset_color=$(tput sgr0)
+    fi
+fi
+
+echo_bad() {
+    echo "$error_color$bold_color$@$reset_color"
+}
+
+echo_good() {
+    echo "$normal_color$bold_color$@$reset_color"
+}
+
 # Some aliases. Most are from the arch wiki
 ## Modified commands ## {{{ alias diff='colordiff'              # requires colordiff package
 alias grep='grep --color=auto'
@@ -113,25 +134,25 @@ storagesync() {
     mount $storage_loc2
     d2=$?
     if [ $d1 -ne 0 ]  && [ $d2 -ne 0 ]; then
-        echo "External drives not mounted, exiting!"
+        echo_bad "External drives not mounted, exiting!"
         return 1
     else
         if [ $d1 -eq 0 ]; then
-            echo "External drive 1 mounted, syncing to it"
+            echo_good "External drive 1 mounted, syncing to it"
             prev_alias=$(alias rsync)
             unalias rsync
             eval "rsync -av --delete $full_local_dirs $storage_loc1"
             alias "$prev_alias"
-            echo "Unmounting drive 1"
+            echo_good "Unmounting drive 1"
             umount $storage_loc1
         fi
         if [ $d2 -eq 0 ]; then
-            echo "External drive 2 mounted, syncing to it"
+            echo_good "External drive 2 mounted, syncing to it"
             prev_alias=$(alias rsync)
             unalias rsync
             eval "rsync -av --delete $full_local_dirs $storage_loc2"
             alias "$prev_alias"
-            echo "Unmounting drive 2"
+            echo_good "Unmounting drive 2"
             umount $storage_loc2
         fi
     fi
@@ -146,7 +167,7 @@ storagerestore() {
     mount $storage_loc1
     d1=$?
     if [ $d1 -ne 0 ]; then
-        echo "External drive 1 not mounted, exiting!"
+        echo_bad "External drive 1 not mounted, exiting!"
         return 1
     else
         prev_alias=$(alias rsync)
