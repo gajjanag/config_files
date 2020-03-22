@@ -155,6 +155,21 @@ storagesync() {
             echo_good "Unmounting drive 2"
             umount $storage_loc2
         fi
+        mount $storage_loc1
+        d1=$?
+        mount $storage_loc2
+        d2=$?
+        if [ $d1 -eq 0 ] && [ $d2 -eq 0 ]; then
+            echo_good "External drive 1,2 both mounted, syncing from 1 to 2"
+            prev_alias=$(alias rsync)
+            unalias rsync
+            eval "rsync -av --delete --exclude='lost+found' $storage_loc1/ $storage_loc2"
+            alias "$prev_alias"
+            echo_good "Unmounting drive 1"
+            umount $storage_loc1
+            echo_good "Unmounting drive 2"
+            umount $storage_loc2
+        fi
     fi
 }
 athenarestore() {
