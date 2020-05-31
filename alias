@@ -123,12 +123,6 @@ done
 is_mounted() {
     findmnt -rno SOURCE,TARGET "$1" >/dev/null #path or device
 }
-athenasync() {
-    prev_alias=$(alias rsync)
-    unalias rsync
-    eval "rsync -av --delete $local_dirs $backup_loc"
-    alias "$prev_alias"
-}
 storagesync() {
     mount $storage_loc1
     d1=$?
@@ -172,12 +166,6 @@ storagesync() {
             umount $storage_loc2
         fi
     fi
-}
-athenarestore() {
-    prev_alias=$(alias rsync)
-    unalias rsync
-    eval "rsync -av --delete $remote_dirs $src_loc"
-    alias "$prev_alias"
 }
 storagerestore() {
     mount $storage_loc1
