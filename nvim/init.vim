@@ -179,8 +179,7 @@ vnoremap > >gv
 vnoremap < <gv
 
 " map tag commands to be nicer
-nmap <C-Right> <C-]>
-nmap <C-Left> <C-T>
+nmap <C-[> <C-T>
 
 " toggle nu and relnu with control-K
 function! g:ToggleNuMode()
