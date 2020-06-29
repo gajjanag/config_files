@@ -29,3 +29,5 @@
 [diff]
 	renames = copy
 	algorithm = patience
+[pull]
+	rebase = true
