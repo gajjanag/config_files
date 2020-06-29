@@ -98,8 +98,7 @@ research \
 doc"
 extra_dirs="videos \
 music \
-photos \
-projects"
+photos"
 src_loc="/home/$user_name"
 backup_loc=$user_name@athena.dialup.mit.edu:Private
 storage_loc1="/home/$user_name/storage_wd1"
@@ -124,10 +123,18 @@ is_mounted() {
     findmnt -rno SOURCE,TARGET "$1" >/dev/null #path or device
 }
 storagesync() {
-    mount $storage_loc1
-    d1=$?
-    mount $storage_loc2
-    d2=$?
+    if is_mounted ${storage_loc1}; then
+        d1=0
+    else
+        mount $storage_loc1
+        d1=$?
+    fi
+    if is_mounted ${storage_loc2}; then
+        d2=0
+    else
+        mount $storage_loc2
+        d2=$?
+    fi
     if [ $d1 -ne 0 ]  && [ $d2 -ne 0 ]; then
         echo_bad "External drives not mounted, exiting!"
         return 1
