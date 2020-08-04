@@ -31,6 +31,7 @@ In particular, lain should be checked out to commit 301faf5 or earlier.
 * qpdfview: configuration for [qpdfview](https://launchpad.net/qpdfview), a very elegant, simple qt/poppler based tabbed pdf/djvu/ps viewer.
 * makepkg.old: < 4.2 version of [makepkg](https://wiki.archlinux.org/index.php/Makepkg). 4.2 removed --asroot. In general, the idea is good, but it is a PITA to do automated installation of systems via scripting if one relies heavily on the AUR. I use it only temporarily until we get the base scaffold of the system up.
 * makepkg.conf: Related to the above; just helps me keep track of tweaks I have done.
+* lxterminal: configuration for [lxterminal](https://github.com/lxde/lxterminal), a small terminal emulator based off GTK and VTE.
 * sakura: configuration for [sakura](https://launchpad.net/sakura), a pretty small terminal emulator based off GTK and VTE.
 * mpv: configuration for [mpv](https://mpv.io/), a media player.
 * powertop.service: Uses [powertop](https://01.org/powertop), and this systemd service file automatically auto-tunes parameters on boot.
