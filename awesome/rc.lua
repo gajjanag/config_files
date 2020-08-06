@@ -129,8 +129,8 @@ local bat = lain.widgets.bat({
             baticon:set_image(beautiful.widget_ac)
         end
     end,
-    ac = "ACAD",
-    battery = "BAT1",
+    ac = "AC",
+    battery = "BAT0",
 })
 
 -- Weather
