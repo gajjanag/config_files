@@ -39,6 +39,7 @@ set undofile
 " LaTeX
 let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_viewer_method='mupdf'
+let g:tex_flavor = 'latex'
 augroup WrapLineInTeXFile
     autocmd!
     autocmd FileType tex setlocal wrap
