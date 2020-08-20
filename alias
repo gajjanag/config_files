@@ -162,10 +162,10 @@ storagesync() {
         mount $storage_loc2
         d2=$?
         if [ $d1 -eq 0 ] && [ $d2 -eq 0 ]; then
-            echo_good "External drive 1,2 both mounted, syncing from 1 to 2"
+            echo_good "External drive 1,2 both mounted, syncing from 2 to 1"
             prev_alias=$(alias rsync)
             unalias rsync
-            eval "rsync -av --delete --exclude='lost+found' $storage_loc1/ $storage_loc2"
+            eval "rsync -av --delete --exclude='lost+found' $storage_loc2/ $storage_loc1"
             alias "$prev_alias"
             echo_good "Unmounting drive 1"
             umount $storage_loc1
