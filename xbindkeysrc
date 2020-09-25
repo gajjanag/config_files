@@ -1,15 +1,19 @@
 # increase volume
 "ponymix increase 5"
-    XF86AudioRaiseVolume
+    Shift + XF86AudioRaiseVolume
 
 # decrease volume
 "ponymix decrease 5"
-    XF86AudioLowerVolume
+    Shift + XF86AudioLowerVolume
+
+# mute audio
+"ponymix toggle"
+    Shift + XF86AudioMute
 
 # increase screen brightness
 "xbacklight -inc 10"
-    XF86MonBrightnessUp
+    Shift + XF86MonBrightnessUp
 
 # decrease screen brightness
 "xbacklight -dec 10"
-    XF86MonBrightnessDown
+    Shift + XF86MonBrightnessDown
