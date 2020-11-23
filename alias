@@ -157,8 +157,10 @@ storagesync() {
             echo_good "Unmounting drive 2"
             umount $storage_loc2
         fi
+        echo_good "Trying to mount external drive 1"
         mount $storage_loc1
         d1=$?
+        echo_good "Trying to mount external drive 2"
         mount $storage_loc2
         d2=$?
         if [ $d1 -eq 0 ] && [ $d2 -eq 0 ]; then
@@ -167,8 +169,12 @@ storagesync() {
             unalias rsync
             eval "rsync -av --delete --exclude='lost+found' $storage_loc2/ $storage_loc1"
             alias "$prev_alias"
+        fi
+        if [ $d1 -eq 0 ]; then
             echo_good "Unmounting drive 1"
             umount $storage_loc1
+        fi
+        if [ $d2 -eq 0 ]; then
             echo_good "Unmounting drive 2"
             umount $storage_loc2
         fi
