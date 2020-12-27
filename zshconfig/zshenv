@@ -23,6 +23,12 @@ if [[ -z "$LANG" ]]; then
 fi
 
 #
+# Rust
+#
+
+export RUSTC_WRAPPER=sccache
+export SCCACHE_CACHE_SIZE='30G'
+
 # Less
 #
 
