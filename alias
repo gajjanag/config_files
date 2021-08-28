@@ -88,6 +88,8 @@ args() {
 # Backup stuff.
 user_name=gajjanag
 imp_dirs=".ssh \
+.dotfiles \
+.textfiles \
 .keys \
 temp \
 books \
