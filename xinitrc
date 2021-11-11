@@ -8,6 +8,9 @@
 setxkbmap -option ctrl:nocaps  # Make Caps Lock a Control key
 xbindkeys
 
+# disable bell
+xset b off
+
 # execute redshift
 [ -f /usr/bin/redshift ] && redshift &
 
