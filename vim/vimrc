@@ -3,6 +3,35 @@ filetype plugin indent on
 " vi? This is VIMMMMMMMMMMMMMM
 set nocompatible
 
+" install plug if not already there
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+" plugins
+call plug#begin('~/.vim/plugged')
+" color scheme
+Plug 'junegunn/seoul256.vim'
+" syntax checker
+Plug 'vim-syntastic/syntastic'
+" LaTeX support
+Plug 'lervag/vimtex'
+call plug#end()
+
+" Visual appearance: load colorscheme
+colo seoul256
+
+" Syntax checking settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 """ Now the general stuff!
 
 " all movement keys will move the the next line when at last character
