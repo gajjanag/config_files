@@ -1,5 +1,7 @@
 tags
 vim/bundle
+vim/autoload
+vim/plugged
 vim/.netrwhist
 qpdfview/qpdfview.conf.*
 mpv/watch_later
