@@ -41,3 +41,4 @@ In particular, lain should be checked out to commit 301faf5 or earlier.
 * pacman: Configuration files for [Pacman](https://www.archlinux.org/pacman/); mainly hooks.
 * latex: LaTeX settings (mainly macros).
 * sage: [SageMath](https://www.sagemath.org/) settings.
+* yt-dlp: [yt-dlp](https://github.com/yt-dlp/yt-dlp) configuration.
