@@ -202,6 +202,11 @@ play() {
     mpv --no-resume-playback --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$@"
 }
 
+# set-volume helper
+setvol() {
+    ponymix --sink set-volume "$@"
+}
+
 project() {
     screen_res=$(xdpyinfo | awk '/dimensions/{print $2}')
     xrandr --output HDMI1 --auto --scale-from $screen_res
