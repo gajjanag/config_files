@@ -25,6 +25,9 @@ ttyctl -f
 # https://stackoverflow.com/questions/11670935/comments-in-command-line-zsh
 setopt interactivecomments
 
+# autocontinue suspended jobs with disown
+setopt AUTO_CONTINUE
+
 # Gurobi stuff
 export GUROBI_HOME="/opt/gurobi752/linux64"
 export PATH="${PATH}:${GUROBI_HOME}/bin"
