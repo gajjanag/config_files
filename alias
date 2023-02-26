@@ -97,10 +97,14 @@ courses \
 dev \
 ganesh \
 research \
-doc"
+doc \
+temp_priv"
 extra_dirs="videos \
 music \
-photos"
+photos \
+projects \
+Dropbox \
+wallpapers"
 src_loc="/home/$user_name"
 backup_loc=$user_name@athena.dialup.mit.edu:Private
 storage_loc1="/home/$user_name/storage_wd1"
